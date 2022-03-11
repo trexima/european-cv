@@ -4,20 +4,10 @@ CV can be saved to database, exported to DOC or PDF format.
 
 ## Installation
 Add to composer.json:
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "ssh://git@git.trexima.sk:7999/trex/europeancvbundle.git"
-    }
-],
-```
-
-Open a command console, enter your project directory and execute:
-
 ```console
-composer require trexima/european-cv-bundle:@dev
+composer require trexima/european-cv
 ```
+
 
 JS and CSS libs:
 ```
@@ -43,8 +33,8 @@ NOTE: For required external libs include:
 ### Installing assets with Webpack encore:
 ```js
 Encore.addEntry('trexima-european-cv', [
-    './vendor/trexima/european-cv-bundle/Resources/assets/js/main.js',
-    './vendor/trexima/european-cv-bundle/Resources/public/build/trexima-european-cv.css'
+    './vendor/trexima/european-cv/Resources/assets/js/main.js',
+    './vendor/trexima/european-cv/Resources/public/build/trexima-european-cv.css'
 ])
 ```
 
@@ -103,18 +93,4 @@ If you wish to use default texts provided in this bundle, you have to make sure 
 ```yaml
 framework:
     translator: ~
-```
-
-# Development
-For local development add this to composer.json with valid local path to package, compile webpack on europeancvbundle - yarn run encore prod, remove vendor a node folder and in other project composer update && yarn run encore dev:
-```json
-"repositories": {
-    "trexima/european-cv-bundle": {
-        "type": "path",
-        "url": "../EuropeanCvBundle",
-        "options": {
-            "symlink": true
-        }
-    }
-},
 ```
