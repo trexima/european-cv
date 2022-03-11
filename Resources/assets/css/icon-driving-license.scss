@@ -1,0 +1,66 @@
+.icon-driving-license {
+  height: 30px;
+
+  display: inline-block;
+  content: '';
+  width: 90px;
+  background: url("../../public/images/transport.png") no-repeat;
+
+  &.icon-driving-license-am {
+    background-position: left 0;
+  }
+
+  &.icon-driving-license-b {
+    background-position: left -44px;
+  }
+
+  &.icon-driving-license-b1 {
+    background-position: left -90px;
+  }
+
+  &.icon-driving-license-a,
+  &.icon-driving-license-a1,
+  &.icon-driving-license-a2 {
+    background-position: left -131px;
+  }
+
+  &.icon-driving-license-c {
+    background-position: left -270px;
+  }
+
+  &.icon-driving-license-c1 {
+    background-position: left -313px;
+  }
+
+  &.icon-driving-license-d {
+    background-position: left -365px;
+  }
+
+  &.icon-driving-license-d1 {
+    background-position: left -409px;
+  }
+
+  &.icon-driving-license-b_e {
+    background-position: left -455px;
+  }
+
+  &.icon-driving-license-c_e {
+    background-position: left -502px;
+  }
+
+  &.icon-driving-license-d_e {
+    background-position: left -548px;
+  }
+
+  &.icon-driving-license-c1_e {
+    background-position: left -593px;
+  }
+
+  &.icon-driving-license-d1_e {
+    background-position: left -642px;
+  }
+
+  &.icon-driving-license-t {
+    background-position: left -684px;
+  }
+}

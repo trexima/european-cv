@@ -1,0 +1,59 @@
+<html>
+<head>
+    {% block head %}
+        <style type="text/css">
+            @page {
+                margin-top: 2.5cm;
+                margin-bottom: 2.5cm;
+                margin-left: 2.5cm;
+                margin-right: 2.5cm;
+
+                margin-header: 1.25cm;
+                margin-footer: 1.25cm;
+
+                header: pageHeader;
+                footer: pageFooter;
+            }
+
+            @page :first {
+                header: firstPageHeader;
+                footer: firstPageFooter;
+            }
+
+            body,
+            html {
+                font-family: "Times New Roman";
+                font-size: 12pt;
+                letter-spacing: 0.1pt;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+    {% set html_content %}
+        <htmlpageheader name="firstPageHeader">
+            {% block firstPageHeader %}
+                {{ block('pageHeader') }}
+            {% endblock %}
+        </htmlpageheader>
+
+        <htmlpagefooter name="firstPageFooter">
+            {% block firstPageFooter %}
+                {{ block('pageFooter') }}
+            {% endblock %}
+        </htmlpagefooter>
+
+        <htmlpageheader name="pageHeader">
+            {% block pageHeader %}{% endblock %}
+        </htmlpageheader>
+
+        <htmlpagefooter name="pageFooter">
+            {% block pageFooter %}{% endblock %}
+        </htmlpagefooter>
+
+        {% block body %}{% endblock %}
+    {% endset %}
+
+    {{ european_cv_emogrify(html_content, ['@TreximaEuropeanCvBundle/Resources/assets/css/exporter/common.css'], block('css')) }}
+</body>
+</html>

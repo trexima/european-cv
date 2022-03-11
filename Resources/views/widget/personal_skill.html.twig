@@ -1,0 +1,83 @@
+{% set tooltip %}
+    Opíšte vaše komunikačné zručnosti a uveďte, kde ste ich nadobudli (v predchádzajúcom zamestnaní,
+    počas štúdia, školení, seminárov, dobrovoľníckej alebo záujmovej činnosti a pod.).
+    <br/>
+    <strong>Príklady:</strong>
+    <br/>
+    <ul>
+        <li>
+            správne kladenie otázok získané na pozícii telemarketéra (pracovníka telefonického predaja
+            produktov),
+        </li>
+        <li>
+            empatia a tiež aktívne počúvanie získané počas dobrovoľníckej činnosti v dennom
+            stacionári pre seniorov,
+        </li>
+        <li>
+            podávanie konštruktívnej spätnej väzby získané počas štúdia prostredníctvom
+            vyjadrovania sa k projektom a prezentáciám spolužiakov/kolegov študentov
+        </li>
+    </ul>
+{% endset %}
+{{ form_row(form.skillCommunication, {'tooltip': tooltip}) }}
+{% set tooltip %}
+    Opíšte vaše organizačné/manažérske zručnosti a uveďte, kde ste ich nadobudli (v predchádzajúcom
+    zamestnaní, počas štúdia, školení, seminárov, dobrovoľníckej alebo záujmovej činnosti a pod.).
+    <br/>
+    <strong>Príklady:</strong>
+    <br/>
+    <ul>
+        <li>
+            vedenie a motivovanie ľudí (v súčasnosti som zodpovedný za tím desiatich pracovníkov),
+        </li>
+        <li>
+            dobrý time management (vždy odovzdanie načas všetkých dokumentov, výstupov a projektov počas
+            štúdia
+            i v predchádzajúcich zamestnaniach),
+        </li>
+        <li>
+            plánovanie, rozhodovanie a riešenie problémov získané
+            na pozícii manažéra logistiky
+        </li>
+    </ul>
+{% endset %}
+{{ form_row(form.skillManagement, {'tooltip': tooltip}) }}
+{% set tooltip %}
+    Opíšte vaše zručnosti vzťahujúce sa k práci, napr. v ovládaní špecifických typov zariadení, strojov
+    a pod. alebo technické vedomosti a zručnosti v určitom špecializovanom odbore
+    (spracovateľský priemysel, zdravotníctvo, bankovníctvo a pod.). Uveďte, kde ste ich nadobudli
+    (v predchádzajúcom zamestnaní, počas školení, seminárov, dobrovoľníckej alebo záujmovej činnosti
+    a pod.).
+    <br/>
+    <strong>Príklady:</strong>
+    <br/>
+    <ul>
+        <li>
+            poznanie a schopnosť praktickej aplikácie metód KAIZEN a 5S získané na pozícii manažéra
+            kvality,
+        </li>
+        <li>
+            skúsenosť s mentoringom (ako vrchná sestra som mala zodpovednosť za zaškolenie a vedenie
+            nového
+            zdravotníckeho personálu)
+        </li>
+    </ul>
+{% endset %}
+{{ form_row(form.skillJob, {'tooltip': tooltip}) }}
+{% set tooltip %}
+    Uveďte vaše ďalšie zručnosti a kompetencie, ktoré nie sú uvedené v predchádzajúcich kolónkach a
+    na ktoré by ste chceli upozorniť vášho potenciálneho zamestnávateľa. Uveďte,
+    kde ste ich nadobudli.
+    <br/>
+    <strong>Príklady:</strong>
+    <br/>
+    <ul>
+        <li>
+            poľovníctvo - absolvované poľovnícke skúšky,
+        </li>
+        <li>
+            herecké aktivity - dobrovoľnícke divadlo.
+        </li>
+    </ul>
+{% endset %}
+{{ form_row(form.skillOther, {'tooltip': tooltip}) }}

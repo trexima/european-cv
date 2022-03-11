@@ -1,0 +1,49 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 12">
+    <meta name=Originator content="Microsoft Word 12">
+
+    {% block head %}
+        <style type="text/css">
+            @page
+            {
+                mso-page-orientation: portrait;
+
+                size: 21.0cm 29.7cm;
+                margin: 2.5cm 2.5cm 2.5cm 2.5cm;
+            }
+
+            @page Section1 {
+                mso-header-margin: 1.25cm;
+                mso-footer-margin: 1.25cm;
+            }
+
+            div.Section1 {
+                page: Section1;
+            }
+
+            body,
+            html {
+                font-family: "Times New Roman";
+                font-size: 12pt;
+                letter-spacing: 0.1pt;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% set html_content %}
+    {% block body %}{% endblock %}
+{% endset %}
+
+<div class=Section1>
+    {{ european_cv_emogrify(html_content, ['@TreximaEuropeanCvBundle/Resources/assets/css/exporter/common.css'], block('css')) }}
+</div>
+</body>
+</html>

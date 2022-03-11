@@ -1,0 +1,63 @@
+.european-cv-tootlip {
+  position: relative;
+  display: inline-block;
+
+  .european-cv-tooltip-trigger {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+
+    color: #ababab;
+    background: #eee;
+
+    -webkit-transition: all 200ms ease-out;
+    -moz-transition: all 200ms ease-out;
+    -o-transition: all 200ms ease-out;
+    transition: all 200ms ease-out;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    &:before {
+      display: inline-block;
+      content: '?';
+    }
+
+    &:hover {
+      color: #ddd;
+      background: #fafafa;
+    }
+  }
+
+  .european-cv-tootlip-content {
+    width: 25vw;
+    padding: 15px 20px;
+    max-width: 380px;
+
+    box-shadow: 0 0 12px #e6e6e6;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    font-size: .8rem;
+    line-height: 1.5;
+    text-align: left;
+
+    display: none;
+
+    position: absolute;
+    right: 30px;
+    top: 15px;
+
+    z-index: 999;
+  }
+
+  &.active {
+    .european-cv-tootlip-content {
+      display: block;
+    }
+  }
+}

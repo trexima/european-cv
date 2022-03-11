@@ -1,0 +1,29 @@
+{% block base_collection_entry_widget %}
+    <div class="card mb-2 drag-item" id="collection-entry-{{ id }}">
+        <div class="card-header drag-handle" id="collection-entry-header-{{ id }}">
+            <div class="european-cv-panel-title">
+                <div class="european-cv-panel-title-left">
+                    <i class="fas fa-arrows-alt"></i>
+                </div>
+                <div class="european-cv-panel-title-center">
+                    <a href="#" data-toggle="collapse" data-target="#collection-entry-collapse-{{ id }}" aria-expanded="true" aria-controls="collection-entry-collapse-{{ id }}">
+                        {{ header|raw }}
+                    </a>
+                </div>
+
+                <div class="european-cv-panel-title-right">
+                    <a href="#" data-trexima-european-cv-dynamic-collection-remove="#collection-entry-{{ id }}">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div id="collection-entry-collapse-{{ id }}" class="collapse" aria-labelledby="collection-entry-header-{{ id }}" data-parent="#{{ form.parent.vars.id }}">
+            <div class="card-body">
+                {{ content|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+@import "./jquery-file-upload.scss";
+@import "./icon-driving-license.scss";
+@import "./tooltip.scss";
+@import "./sortable.scss";
+@import "./select2.scss";
+
+.trexima-european-cv {
+
+  /* .hidden classs is no more available in Bootstrap 4*/
+  .hidden {
+    display: none;
+  }
+
+  h3 {
+    text-align: center;
+    padding: 15px 0;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+
+    .european-cv-form-section-number {
+      background: #333;
+      border-radius: 50%;
+      color: #fff;
+      display: inline-block;
+      width: 2em;
+      line-height: 2em;
+      font-size: .5em;
+      margin: 0 10px 0 0;
+      position: relative;
+      top: -0.25em;
+    }
+  }
+
+  .invalid-feedback{
+    display: block;
+  }
+
+  .european-cv-panel-title {
+    font-size: 1rem;
+
+    .european-cv-panel-title-left {
+      float: left;
+    }
+
+    .european-cv-panel-title-center {
+      float: left;
+
+      padding: 0 5px;
+    }
+
+    .european-cv-panel-title-right {
+      float: right;
+    }
+  }
+
+  .form-group.european-cv-driving_license-form-group {
+    position: relative;
+    margin-bottom: 5px;
+
+    .form-control {
+      font-size: .9rem;
+      height: calc(1em + 0.75rem + 2px);
+    }
+
+    .form-check {
+      line-height: 30px;
+
+      .form-check-input {
+        margin-top: 0.5rem;
+      }
+    }
+
+    .icon-driving-license {
+      position: absolute;
+      left: -100px;
+
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+
+  .european-cv-tootlip {
+
+    .european-cv-tooltip-trigger {
+      font-size: .9rem;
+    }
+
+    .european-cv-tootlip-content {
+      font-weight: normal;
+    }
+  }
+
+  .european-cv-widget-tootip-container {
+    position: relative;
+
+    .european-cv-widget-container {
+      padding-right: 45px;
+    }
+
+    .european-cv-tooltip-container {
+      position: absolute;
+      top: 50%;
+      right: 0;
+
+      margin-top: -15px;
+    }
+  }
+
+  .european-cv-photo-widget {
+    .european-cv-tooltip-container {
+      top: 0;
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+a:
+  label:  Skupina A
+  category: 2
+  tooltip: >
+    Dvojkolesové motorové vozidlá bez postranného vozíka alebo s postranným vozíkom vybavené motorom,
+    ktorých najväčšia konštrukčná rýchlosť je viac ako 45km.h<sup>-1</sup>
+    alebo ktorých zdvihový objem valcov motora je väčší ako 50cm<sup>3</sup> v prípade spaľovacieho motora.
+am:
+  label: Skupina AM
+  category: 1
+  tooltip: >
+    <ol>
+    <li type="a"> Dvojkolesové motorové vozidlá alebo trojkolesové motorové vozidlá s  najväčšou konštrukčnou rýchlosťou 25 až 45 km.h<sup>-1</sup>, ktoré sú charakterizované
+    </li>
+    <ol>
+    <li> ak ide o dvojkolesové  vozidlo s motorom, ktorého zdvihový objem valcov motora nepresahuje 50 cm<sup>3</sup> v  prípade spaľovacieho motora alebo ktorého najväčší trvalý menovitý výkon nie je  väčší ako 4 kW v prípade elektrického motora, a</li>
+    <li> ak ide o trojkolesové  vozidlo s motorom, ktorého zdvihový objem valcov motora nepresahuje 50 cm<sup>3</sup> v  prípade zážihového motora, najväčší čistý výkon nie je väčší ako 4 kW v prípade  spaľovacieho motora alebo ktorého najväčší trvalý menovitý výkon nie je väčší  ako 4 kW v prípade elektrického motora, a</li>
+    </ol>
+    <li type="a"> štvorkolesové motorové vozidlá, ktorých prevádzková hmotnosť je menšia ako 350 kg bez hmotnosti batérií  v prípade elektrických vozidiel, ktorých najväčšia konštrukčná rýchlosť  nepresahuje 45 km.h<sup>-1</sup>,  a&nbsp;ktorých</li>
+    <ol>
+    <li>zdvihový objem valcov motora  nepresahuje 50 cm<sup>3</sup> v prípade zážihových motorov, </li>
+    <li>najväčší čistý výkon  nie je väčší ako 4 kW v prípade iných spaľovacích motorov, alebo</li>
+    <li> najväčší trvalý menovitý  výkon nie je väčší ako 4 kW v prípade elektrického motora.</li>
+    </ol>
+    </ol>
+
+b:
+  label: Skupina B
+  category: 1
+  tooltip: >
+    <ol type="a">
+    <li>Motorové   vozidlá okrem vozidiel skupiny A a T a podskupiny A1, ktorých najväčša   prípustná celková hmotnosť nepresahuje 3 500 kg a ktoré nemajú okrem miesta pre vodiča viac ako osem miest na sedenie; môže byť pripojené prípojné vozidlo s najväčšou prípustnou celkovou hmotnosťou nepresahujúcou 750 kg.</li>
+    <li>Jazdné súpravy zložené z ťažného vozidla skupiny B a prípojného vozidla, ak najväčšia prípustná hmotnosť jazdnej súpravy nepresahuje 3 500 kg a najväčšia prípustná celková hmotnosť prípojného vozidla nepresahuje prevádzkovú hmotnosť ťažného vozidla.</li></ol>
+b_e:
+  label: Skupina B + E
+  category: 2
+  tooltip: >
+    Jazdné súpravy zložené  z&nbsp;motorového vozidla skupiny B a&nbsp;prípojného vozidla, ak nejde  o&nbsp;jazdnú súpravu s najväčšou prípustnou hmotnosťou jazdnej súpravy menšou  ako 3 500 kg  a&nbsp;najväčšou prípustnou celkovou hmotnosťou prípojného vozidla  nepresahujúceho prevádzkovú hmotnosť ťažného vozidla.
+b1:
+  label: Podskupina B1
+  category: 1
+  tooltip: >
+    <ol>
+    <li type="a">Motorové  vozidlá s&nbsp;3 symetricky usporiadanými kolesami, ktorých zdvihový objem  valcov motora je väčší ako 50 cm<sup>3</sup> v&nbsp;prípade spaľovacieho motora alebo  ktorých najväčšia konštrukčná rýchlosť je vyššia ako 45km.h<sup>-1</sup>, a</li>
+    <li type="a">motorové  vozidlá so 4 kolesami, ktorých</li>
+    <ol>
+    <li>prevádzková  hmotnosť je 350 kg  až 550 kg  bez hmotnosti batérií v&nbsp;prípade elektrických vozidiel,</li>
+    <li>najväčšia  konštrukčná rýchlosť presahuje 45km.h<sup>-1</sup>,</li>
+    <li>zdvihový objem valcov motora presahuje 50 cm<sup>3</sup>  v&nbsp;prípade zážihových motorov, najväčší čistý výkon je väčší ako 4 kW v prípade iných spaľovacích motorov alebo ktorých najväčší trvalý menovitý výkon je 4 kW až 15 kW v prípade elektrického motora.
+    </li>
+    </ol>
+    </ol>
+c:
+  label: Skupina C
+  category: 2
+  tooltip: >
+    Motorové vozidlá okrem  vozidiel skupiny D a&nbsp;T a&nbsp;podskupiny D1, ktorých najväčšia prípustná  celková hmotnosť presahuje 3   500 kg; môže byť pripojené prípojné vozidlo  s&nbsp;najväčšou prípustnou celkovou hmotnosťou nepresahujúcou 750 kg.
+c_e:
+  label: Skupina C + E
+  category: 2
+  tooltip: >
+    Jazdné súpravy zložené  z&nbsp;motorového vozidla skupiny C a&nbsp;prípojného vozidla, ktorého  najväčšia prípustná celková hmotnosť presahuje 750 kg.
+c1:
+  label: Podskupina C1
+  category: 2
+  tooltip: >
+    Motorové vozidlá okrem  vozidiel skupiny D a&nbsp;T a&nbsp;podskupiny D1, ktorých najväčšia prípustná  celková hmotnosť je 3 500   kg až 7&nbsp;500 kg; môže byť pripojené prípojné  vozidlo s&nbsp;najväčšou prípustnou celkovou hmotnosťou nepresahujúcou 750 kg.
+c1_e:
+  label: Podskupina C1 + E
+  category: 2
+  tooltip: >
+    Jazdné súpravy zložené  z&nbsp;motorového vozidla podskupiny C1 a&nbsp;prípojného vozidla, ktorého  najväčšia prípustná celková hmotnosť presahuje 750 kg. Najväčšia prípustná  hmotnosť jazdnej súpravy však nesmie presahovať 12&nbsp;000 kg  a&nbsp;najväčšia prípustná celková hmotnosť prípojného vozidla nesmie  presahovať prevádzkovú hmotnosť ťažného vozidla.
+d:
+  label: Skupina D
+  category: 2
+  tooltip: >
+    Motorové vozidlá na dopravu  osôb, ktoré majú okrem miesta pre vodiča viac ako osem miest na sedenie; môže  byť pripojené prípojné vozidlo s&nbsp;najväčšou prípustnou celkovou hmotnosťou  nepresahujúcou 750 kg.
+d_e:
+  label: Skupina D + E
+  category: 2
+  tooltip: >
+    Jazdné súpravy zložené  z&nbsp;motorového vozidla skupiny D a&nbsp;prípojného vozidla, ktorého  najväčšia prípustná celková hmotnosť presahuje 750 kg.
+d1:
+  label: Podskupina D1
+  category: 2
+  tooltip: >
+    Motorové vozidlá na dopravu  osôb, ktoré majú okrem miesta pre vodiča viac ako osem miest na sedenie; môže  byť pripojené prípojné vozidlo s&nbsp;najväčšou prípustnou celkovou hmotnosťou  nepresahujúcou 750 kg.
+d1_e:
+  label: Podskupina D1 + E
+  category: 2
+  tooltip: >
+    Jazdné súpravy zložené  z&nbsp;motorového vozidla podskupiny D1 a&nbsp;prípojného vozidla, ktorého  najväčšia prípustná celková hmotnosť presahuje 750 kg a&nbsp;ktoré nie je  určené na dopravu osôb. Najväčšia prípustná hmotnosť jazdnej súpravy však  nesmie presahovať 12&nbsp;000   kg a&nbsp;najväčšia prípustná celková hmotnosť  prípojného vozidla nesmie presahovať prevádzkovú hmotnosť ťažného vozidla.
+t:
+  label: Skupina T
+  category: 2
+  tooltip: >
+    Poľnohospodárske a lesné traktory, ako aj iné zvláštne motorové vozidlá; môže byť pripojené prípojné vozidlo.

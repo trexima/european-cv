@@ -1,0 +1,26 @@
+<div class="row">
+    {% if 'is_user_logged_in' %}
+        <div class="offset-lg-3 col-sm">
+            {{ form_row(form.submit) }}
+        </div>
+    {% endif %}
+    <div class="col-sm{% if not 'is_user_logged_in' %} offset-md-4{% endif %}">
+        {{ form_row(form.submitPreview) }}
+    </div>
+    <div class="{% if not 'is_user_logged_in' %}col-md{% else %}col-lg{% endif %}"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm">
+        {{ form_row(form.submitDoc) }}
+    </div>
+    <div class="col-sm">
+        {{ form_row(form.submitPdf) }}
+    </div>
+    <div class="col-sm">
+        <button type="button" class="btn btn-block btn-secondary" type="button" data-toggle="modal" data-target="#european-cv-email-dialog">
+            <i class="far fa-envelope"></i>
+            {{ 'Poslať e-mailom'|trans }}
+        </button>
+    </div>
+</div>

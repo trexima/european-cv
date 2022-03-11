@@ -1,0 +1,854 @@
+{% trans_default_domain 'trexima_european_cv' %}
+{% extends exportType is same as(constant('Trexima\\EuropeanCvBundle\\Export\\EuropeanCvExporter::TYPE_PDF')) ? '@TreximaEuropeanCv/export/_base_pdf.html.twig' : '@TreximaEuropeanCv/export/_base_doc.html.twig' %}
+
+{#}Body and html tags aren't content of emogrified HTML{#}
+{#}CSS that is suported in both PDF and DOC format{#}
+{% block head %}
+    {{- parent() -}}
+    <style>
+        {% if exportType is same as(constant('Trexima\\EuropeanCvBundle\\Export\\EuropeanCvExporter::TYPE_PDF')) %}
+            @page {
+                margin-top: 3cm;
+                margin-bottom: 2.5cm;
+                margin-left: 1.5cm;
+                margin-right: 1.5cm;
+
+                margin-header: 1.25cm;
+                margin-footer: 1.25cm;
+            }
+        {% elseif exportType is same as(constant('Trexima\\EuropeanCvBundle\\Export\\EuropeanCvExporter::TYPE_DOC')) %}
+            @page {
+                mso-page-orientation: portrait;
+
+                size: 21.0cm 29.7cm;
+                margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+            }
+        {% endif %}
+
+        body,
+        html {
+            font-size: 9pt;
+        }
+    </style>
+{% endblock %}
+
+{#}CSS with unsuported CSS selectors that must be emogrified{#}
+{% block css %}
+    <style>
+        h1 {
+            font-size: 14pt;
+            color: #32C0F1;
+            margin: 0;
+        }
+
+        h2, h3 {
+            font-size: 9pt;
+            font-weight: normal;
+            color: #0F53BD;
+
+            padding: 0;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 11pt;
+        }
+
+        hr {
+            height: 1px;
+
+            color: #32C0F1;
+        }
+
+        .text-blue {
+            color: #1593CB;
+        }
+
+        /* Table as list with icons */
+        table.icon-list {
+
+        }
+
+        table.icon-list > tr > td {
+            padding-top: 4pt;
+            padding-bottom: 4pt;
+        }
+
+        table.icon-list > tr > td:first-child {
+            width: 0.5cm;
+            padding-right: 0.2cm;
+        }
+
+        table.icon-list > tr > td img {
+            vertical-align: top;
+        }
+
+        /* Content columns */
+        table.content-2-columns {
+
+        }
+
+        table.content-2-columns > tr > td {
+            padding-top: 4pt;
+            padding-bottom: 4pt;
+        }
+
+        table.content-2-columns > tr > td:first-child {
+            width: 5cm;
+            text-align: right;
+
+            padding-right: 0.5cm;
+        }
+
+        table.content-2-columns.content-2-columns-subheader > tr:first-child > td {
+            padding-bottom: 0;
+
+            line-height: 13pt; /* Ugly hack because mPDF doesn't support vertical-align: baseline; */
+        }
+
+        /* Data squares for two column document */
+        table.content-2-columns.content-2-columns-data-squares {
+            /*overflow: hidden;*/ /* Prevents from wrapping inside word but cause unexpected error with encoding in some cases(only for PDF)!!!! */
+            overflow: auto; /* Prevents from wrapping inside word */
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > td {
+
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > th,
+        table.content-2-columns.content-2-columns-data-squares > tr > td {
+            text-align: center;
+
+            border-top: 1px solid #C6C6C6;
+            border-bottom: 1px solid #C6C6C6;
+
+            padding: 4pt 4pt;
+
+            vertical-align: middle;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > th:first-child,
+        table.content-2-columns.content-2-columns-data-squares > tr > td:first-child {
+            text-align: right;
+
+            border-top: 0;
+            border-bottom: 0;
+
+            padding: 4pt 0.5cm 4pt 0;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > th {
+            font-size: 9pt;
+            color: #0F53BD;
+
+            border-left: 1px solid #C6C6C6;
+            border-right: 1px solid #C6C6C6;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > td + th {
+            border-left: 0;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares tr th.last-child {
+            border-right: 0;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > td {
+            border-top: 1px solid #C6C6C6;
+            border-bottom: 1px solid #C6C6C6;
+        }
+
+        table.content-2-columns.content-2-columns-data-squares > tr > td.legend {
+            background: #ECECEC;
+        }
+    </style>
+{% endblock %}
+
+{% block firstPageHeader %}
+    <table class="content-2-columns vertical-middle">
+        <tr>
+            <td>
+                {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/europass.jpg', 170, img_use_absolute_path) }}
+            </td>
+            <td>
+                <h1>{% trans %}Európsky životopis{% endtrans %}</h1>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block pageHeader %}
+    {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/europass.jpg', 140, img_use_absolute_path) }}
+{% endblock %}
+
+{% block pageFooter %}
+    <div class="text-center text-blue">
+        {PAGENO}
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if exportType == constant('Trexima\\EuropeanCvBundle\\Export\\EuropeanCvExporter::TYPE_DOC') %}
+        <table class="content-2-columns vertical-middle">
+            <tr>
+                <td>
+                    {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/europass.jpg', 170, img_use_absolute_path) }}
+                </td>
+                <td>
+                    <h1>{% trans %}Európsky životopis{% endtrans %}</h1>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    <table class="content-2-columns">
+        <tr>
+            <td>
+                <h2>{% trans %}OSOBNÉ ÚDAJE{% endtrans %}</h2>
+            </td>
+            <td>
+                <p>{{ european_cv.name }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {% if european_cv.photo %}
+                    {{ european_cv_image_tag(image_upload_url ~ european_cv.photo, 170, img_use_absolute_path) }}
+                {% endif %}
+            </td>
+            <td>
+                <table class="icon-list">
+                    {% if european_cv.address %}
+                        <tr>
+                            <td>
+                                {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/adresa.png', 15, img_use_absolute_path) }}
+                            </td>
+                            <td>
+                                <p>
+                                    {{ european_cv.address }}
+                                </p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if not european_cv.phones.empty %}
+                        <tr>
+                            <td>
+                                {% if european_cv.phones.first.type %}
+                                    {% if european_cv.phones.first.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_MOBILE') %}
+                                        {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon2.png', 15, img_use_absolute_path) }}
+                                    {% elseif european_cv.phones.first.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_HOME') %}
+                                        {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon.png', 15, img_use_absolute_path) }}
+                                    {% elseif european_cv.phones.first.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_WORK') %}
+                                        {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon2.png', 15, img_use_absolute_path) }}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <p>
+                                    {% for phone in european_cv.phones if phone.number %}
+                                        {% if first_rendered is defined %}
+                                            &nbsp;&nbsp;&nbsp;
+                                            {% if phone.type %}
+                                                {% if phone.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_MOBILE') %}
+                                                    {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon2.png', 15, img_use_absolute_path) }}
+                                                {% elseif phone.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_HOME') %}
+                                                    {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon.png', 15, img_use_absolute_path) }}
+                                                {% elseif phone.type == constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPE_WORK') %}
+                                                    {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/telefon2.png', 15, img_use_absolute_path) }}
+                                                {% endif %}
+                                                {% endif %}
+                                                &nbsp;
+                                        {% endif %}
+                                        {% set first_rendered = 'true' %}
+                                        {{ phone.number }}
+                                    {% endfor %}
+                                </p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if european_cv.email %}
+                        <tr>
+                            <td>
+                                {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/email.png', 15, img_use_absolute_path) }}
+                            </td>
+                            <td>
+                                <p>
+                                    {{ european_cv.email }}
+                                </p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if european_cv.personalWebsite %}
+                        <tr>
+                            <td>
+                                {{ european_cv_image_tag('@TreximaEuropeanCvBundle/Resources/public/images/mys.png', 15, img_use_absolute_path) }}
+                            </td>
+                            <td>
+                                <p>
+                                    {{ european_cv.personalWebsite }}
+                                </p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+                <br/>
+                <p>
+                    {% if european_cv.sex %}
+                        <span class="text-blue">{% trans %}Pohlavie{% endtrans %}:</span> {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::SEX_LIST')[european_cv.sex]|trans }}
+                        {% if european_cv.dateOfBirth or european_cv.nationality %}
+                            |
+                        {% endif %}
+                    {% endif %}
+                    {% if european_cv.dateOfBirth %}
+                        <span class="text-blue">{% trans %}Dátum narodenia{% endtrans %}:</span> {{ european_cv.dateOfBirth|date('d.m.Y') }}
+                        {% if european_cv.nationality %}
+                            |
+                        {% endif %}
+                    {% endif %}
+                    {% if european_cv.nationality %}
+                        <span class="text-blue">{% trans %}Štátna príslušnosť{% endtrans %}:</span> {{ european_cv.nationality }}
+                    {% endif %}
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br/>
+
+    {% if european_cv.jobInterest %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}ZAMESTNANIE, O KTORÉ SA UCHÁDZATE{% endtrans %}</h2>
+                </td>
+                <td>
+                    <p>
+                        {{ european_cv.jobInterest|trans }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    {% set practices %}
+        {% if not european_cv.practices.empty %}
+            <table class="content-2-columns">
+                <tr>
+                    <td>
+                        <h2>{% trans %}PRAX{% endtrans %}</h2>
+                    </td>
+                    <td>
+                        <hr class="hr"/>
+                    </td>
+                </tr>
+            </table>
+            {% for practice in european_cv.practices %}
+                <table class="content-2-columns content-2-columns-subheader">
+                    <tr>
+                        <td>
+                            {% if practice.dateRange.beginYear or practice.dateRange.endYear %}
+                                <h2>
+                                    {% if practice.dateRange.beginYear %}
+                                        {{ [practice.dateRange.beginDay, practice.dateRange.beginMonth, practice.dateRange.beginYear]|european_cv_atomic_date }}
+                                        -
+                                    {% endif %}
+                                    {% if practice.dateRange.endYear %}
+                                        {{ [practice.dateRange.endDay, practice.dateRange.endMonth, practice.dateRange.endYear]|european_cv_atomic_date }}
+                                    {% else %}
+                                        {% trans %}Prebieha{% endtrans %}
+                                    {% endif %}
+                                </h2>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <h3>{{ practice.job }}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            {% if practice.jobAddress %}
+                                <p>{{ practice.jobAddress|nl2br }}</p>
+                                <br/>
+                            {% endif %}
+                            {% if practice.mainActivities %}
+                                <p>{{ practice.mainActivities|nl2br }}</p>
+                                <br/>
+                            {% endif %}
+                            {% if practice.industry %}
+                                <p>
+                                    <span class="text-blue">{% trans %}Odvetvie{% endtrans %}:</span> {{ practice.industry }}
+                                </p>
+                            {% endif %}
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+            <br/>
+        {% endif %}
+    {% endset %}
+
+    {% set educations %}
+        {% if not european_cv.educations.empty %}
+            <table class="content-2-columns">
+                <tr>
+                    <td>
+                        <h2>{% trans %}VZDELÁVANIE A PRÍPRAVA{% endtrans %}</h2>
+                    </td>
+                    <td>
+                        <hr class="hr"/>
+                    </td>
+                </tr>
+            </table>
+            {% for education in european_cv.educations %}
+                <table class="content-2-columns content-2-columns-subheader">
+                    <tr>
+                        <td>
+                            {% if education.dateRange.beginYear or education.dateRange.endYear %}
+                                <h2>
+                                    {% if education.dateRange.beginYear %}
+                                        {{ [education.dateRange.beginDay, education.dateRange.beginMonth, education.dateRange.beginYear]|european_cv_atomic_date }}
+                                        -
+                                    {% endif %}
+                                    {% if education.dateRange.endYear %}
+                                        {{ [education.dateRange.endDay, education.dateRange.endMonth, education.dateRange.endYear]|european_cv_atomic_date }}
+                                    {% else %}
+                                        {% trans %}Prebieha{% endtrans %}
+                                    {% endif %}
+                                </h2>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if education.title %}
+                                <h3>{{ education.title }}</h3>
+                            {% endif %}
+                        </td>
+                        <td class="text-right"{% if education.europeanQualification %} style="width: 2.5cm;"{% endif %}>
+                            {% if education.europeanQualification %}
+                                {% if education.europeanQualification in constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVEducation::EUROPEAN_QUALIFICATION_LIST') %}
+                                    {# Translate only preddefined strings #}
+                                    <span class="text-blue">{{ education.europeanQualification|trans }}</span>
+                                {% else %}
+                                    <span class="text-blue">{{ education.europeanQualification }}</span>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            {% if education.educationLevel %}
+                                <p>
+                                    <strong>{{ education.educationLevel|european_cv_listing('educationList')|trans }}</strong>
+                                </p>
+                                <br/>
+                            {% endif %}
+                            {% if education.organizationAddress %}
+                                <p>{{ education.organizationAddress|nl2br }}</p>
+                                <br/>
+                            {% endif %}
+                            {% if education.subject %}
+                                <p>{{ education.subject|nl2br }}</p>
+                                <br/>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+            <br/>
+        {% endif %}
+    {% endset %}
+
+    {% if not european_cv.invertPositionPracticeEducation %}
+        {{ practices|raw }}
+        {{ educations|raw }}
+    {% else %}
+        {{ educations|raw }}
+        {{ practices|raw }}
+    {% endif %}
+
+    <table class="content-2-columns">
+        <tr>
+            <td>
+                <h2>{% trans %}OSOBNÉ ZRUČNOSTI{% endtrans %}</h2>
+            </td>
+            <td>
+                <hr class="hr"/>
+            </td>
+        </tr>
+    </table>
+
+    {% if european_cv.languageMother %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}Materinský jazyk{% endtrans %}</h2>
+                </td>
+                <td>
+                    <p>{{ european_cv.languageMother|european_cv_listing('languageList')|trans }}</p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if not european_cv.languages.empty %}
+        <table class="content-2-columns content-2-columns-data-squares">
+            <tr>
+                <td>
+                    <h2>{% trans %}Ďalšie jazyky{% endtrans %}</h2>
+                </td>
+                <th colspan="2">
+                    {% trans %}POROZUMENIE{% endtrans %}
+                </th>
+                <th colspan="2">
+                    {% trans %}HOVORENIE{% endtrans %}
+                </th>
+                <th class="last-child">
+                    {% trans %}PÍSANIE{% endtrans %}
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <th>
+                    {% trans %}Počúvanie{% endtrans %}
+                </th>
+                <th>
+                    {% trans %}Čítanie{% endtrans %}
+                </th>
+                <th>
+                    {% trans %}Ústna interakcia{% endtrans %}
+                </th>
+                <th>
+                    {% trans %}Samostatný ústny prejav{% endtrans %}
+                </th>
+                <th class="last-child">
+
+                </th>
+            </tr>
+            {% for language in european_cv.languages %}
+                <tr>
+                    <td>
+                        {% if language.language %}
+                            <p>{{ language.language|european_cv_listing('languageList')|trans }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if language.listeningLevel %}
+                            <p>{{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVLanguage::LANGUAGE_LEVEL_TO_CODE')[language.listeningLevel] }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if language.readingLevel %}
+                            <p>{{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVLanguage::LANGUAGE_LEVEL_TO_CODE')[language.readingLevel] }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if language.talkingLevel %}
+                            <p>{{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVLanguage::LANGUAGE_LEVEL_TO_CODE')[language.talkingLevel] }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if language.oralSpeechLevel %}
+                            <p>{{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVLanguage::LANGUAGE_LEVEL_TO_CODE')[language.oralSpeechLevel] }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if language.writingLevel %}
+                            <p>{{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVLanguage::LANGUAGE_LEVEL_TO_CODE')[language.writingLevel] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if language.certificate %}
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td colspan="5" class="legend">
+                            <p>
+                                {{ language.certificate }}
+                            </p>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        <table class="content-2-columns">
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <p>
+                        {% trans %}Úrovne{% endtrans %}:
+                        {% trans %} A1 a A2: Používateľ základov jazyka{% endtrans %}
+                        - {% trans %}B1 a B2: Samostatný používateľ{% endtrans %}
+                        - {% trans %} C1 a C2: Skúsený používateľ{% endtrans %}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if european_cv.skillCommunication
+        or european_cv.skillManagement
+        or european_cv.skillJob %}
+        <table class="content-2-columns">
+            {% if european_cv.skillCommunication %}
+                <tr>
+                    <td>
+                        <h2>{% trans %}Komunikačné zručnosti{% endtrans %}</h2>
+                    </td>
+                    <td>
+                        <p>
+                            {{ european_cv.skillCommunication|nl2br }}
+                        </p>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if european_cv.skillManagement %}
+                <tr>
+                    <td>
+                        <h2>{% trans %}Organizačné a riadiace zručnosti{% endtrans %}</h2>
+                    </td>
+                    <td>
+                        <p>
+                            {{ european_cv.skillManagement|nl2br }}
+                        </p>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if european_cv.skillJob %}
+                <tr>
+                    <td>
+                        <h2>{% trans %}Pracovné zručnosti{% endtrans %}</h2>
+                    </td>
+                    <td>
+                        <p>
+                            {{ european_cv.skillJob|nl2br }}
+                        </p>
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if european_cv.skillDigitalInformationProcessing
+        or european_cv.skillDigitalCommunication
+        or european_cv.skillDigitalContentCreation
+        or european_cv.skillDigitalSecurity
+        or european_cv.skillDigitalTroubleshooting
+        or european_cv.skillDigitalCertificate %}
+        <table class="content-2-columns content-2-columns-data-squares">
+            <tr>
+                <td>
+                    <h2>{% trans %}Digitálne zručnosti{% endtrans %}</h2>
+                </td>
+                <th colspan="5" class="last-child">
+                    {% trans %}SEBAHODNOTENIE{% endtrans %}
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <th>
+                    <p>
+                        {% trans %}Spracovanie informácií{% endtrans %}
+                    <p>
+                </th>
+                <th>
+                    <p>
+                        {% trans %}Komunikácia{% endtrans %}
+                    </p>
+                </th>
+                <th>
+                    <p>
+                        {% trans %}Vytváranie obsahu{% endtrans %}
+                    </p>
+                </th>
+                <th>
+                    <p>
+                        {% trans %}Bezpečnosť{% endtrans %}
+                    </p>
+                </th>
+                <th class="last-child">
+                    <p>
+                        {% trans %}Riešenie problémov{% endtrans %}
+                    </p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    {% if european_cv.skillDigitalInformationProcessing %}
+                        <p>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::DIGITAL_SKILL_LEVEL_LIST')[european_cv.skillDigitalInformationProcessing]|trans }}
+                        </p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if european_cv.skillDigitalCommunication %}
+                        <p>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::DIGITAL_SKILL_LEVEL_LIST')[european_cv.skillDigitalCommunication]|trans }}
+                        </p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if european_cv.skillDigitalContentCreation %}
+                        <p>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::DIGITAL_SKILL_LEVEL_LIST')[european_cv.skillDigitalContentCreation]|trans }}
+                        </p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if european_cv.skillDigitalSecurity %}
+                        <p>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::DIGITAL_SKILL_LEVEL_LIST')[european_cv.skillDigitalSecurity]|trans }}
+                        </p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if european_cv.skillDigitalTroubleshooting %}
+                        <p>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCV::DIGITAL_SKILL_LEVEL_LIST')[european_cv.skillDigitalTroubleshooting]|trans }}
+                        </p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% if european_cv.skillDigitalCertificate %}
+                <tr>
+                    <td>
+
+                    </td>
+                    <td colspan="5" class="legend">
+                        <p>
+                            {{ european_cv.skillDigitalCertificate }}
+                        </p>
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+    {% endif %}
+
+    {% if european_cv.skillDigitalOther %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+
+                </td>
+                <td colspan="5" class="legend">
+                    <p>
+                        {{ european_cv.skillDigitalOther|nl2br }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+    <br/>
+
+    {% if european_cv.skillOther %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}Ďalšie zručnosti{% endtrans %}</h2>
+                </td>
+                <td>
+                    <p>
+                        {{ european_cv.skillOther|nl2br }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if not european_cv.drivingLicenses.empty %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}VODIČSKÝ PREUKAZ{% endtrans %}</h2>
+                </td>
+                <td>
+                    {% for drivingLicense in european_cv.drivingLicenses %}
+                        <p>
+                            {{ drivingLicense.drivingLicense|european_cv_listing('drivingLicenseList').label|trans }}
+                            {% if drivingLicense.distanceTraveled %}
+                                - {{ drivingLicense.distanceTraveled }} km
+                            {% endif %}
+                            {% if drivingLicense.activeDriver %}
+                                - {% trans %}Som aktívny vodič{% endtrans %}
+                            {% endif %}
+                        </p>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if not european_cv.additionalInformations.empty %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}DOPLŇUJÚCE INFORMÁCIE{% endtrans %}</h2>
+                </td>
+                <td>
+                    <hr class="hr"/>
+                </td>
+            </tr>
+            {% for additionalInformation in european_cv.additionalInformations %}
+            <tr>
+                <td>
+                    {% if additionalInformation.type %}
+                        <h2>
+                            {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVAdditionalInformation::TYPES')[additionalInformation.type]|trans }}
+                        </h2>
+                    {% endif %}
+                </td>
+                <td>
+                    <p>
+                        {{ additionalInformation.content|nl2br }}
+                    </p>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br/>
+    {% endif %}
+
+    {% if european_cv.attachmentList %}
+        <table class="content-2-columns">
+            <tr>
+                <td>
+                    <h2>{% trans %}PRÍLOHY{% endtrans %}</h2>
+                </td>
+                <td>
+                    <hr class="hr"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <p>
+                        {{ european_cv.attachmentList|nl2br }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+{% endblock %}

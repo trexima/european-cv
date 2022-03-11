@@ -1,0 +1,45 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Trexima\EuropeanCvBundle\:
+        resource: '../../'
+        exclude: '../../{Resources,Entity,DependencyInjection,TreximaEuropeanCvBundle.php}'
+
+    Trexima\EuropeanCvBundle\Controller\UploadController:
+        arguments: ['%trexima_european_cv_upload_dir%']
+        tags: ['controller.service_arguments']
+
+    Trexima\EuropeanCvBundle\Form\Type\JQueryFileUploadType:
+        arguments: ['%trexima_european_cv_upload_url%']
+
+    Trexima\EuropeanCvBundle\Export\EuropeanCvExporter:
+        arguments: ['%trexima_european_cv_upload_url%']
+
+    Trexima\EuropeanCvBundle\Manager\EuropeanCvManager:
+        arguments: ['%trexima_european_cv_upload_dir%']
+
+    Trexima\EuropeanCvBundle\Twig\ImageTagRuntime:
+        arguments: ['%kernel.project_dir%']
+        public: false
+        tags: ['twig.runtime']
+
+    Trexima\EuropeanCvBundle\EventListener\AttachmentUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

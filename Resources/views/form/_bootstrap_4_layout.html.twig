@@ -1,0 +1,548 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{%- block submit_icon_widget -%}
+    {%- set attr = attr|merge({class: (attr.class|default('btn btn-primary'))|trim}) -%}
+    {%- set type = type|default('submit') -%}
+
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- elseif label is same as(false) -%}
+            {% set translation_domain = false %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        {% if icon_left is defined %}
+            {{ icon_left|raw }}
+        {% endif %}
+        {{- translation_domain is same as(false) ? label : label|trans({}, translation_domain) -}}
+        {% if icon_right is defined %}
+            {{ icon_right|raw }}
+        {% endif %}
+    </button>
+{%- endblock submit_icon_widget %}
+
+{% block form_widget_simple -%}
+    {% if type is defined and type == 'date' %}
+        {%- set attr = attr|merge({'data-trexima-european-cv-flatpickr-date': 1}) -%}
+    {% endif %}
+    {{- parent() -}}
+{%- endblock form_widget_simple %}
+
+{% block form_row -%}
+    {%- if compound is defined and compound -%}
+        {%- set element = 'fieldset' -%}
+    {%- endif -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    <{{ element|default('div') }} class="form-group">
+    {{- form_label(form) -}}
+
+    {% if tooltip is defined %}
+        <div class="european-cv-widget-tootip-container">
+            <div class="european-cv-widget-container">
+                {{- form_widget(form, widget_attr) -}}
+            </div>
+            <div class="european-cv-tooltip-container">
+                <div class="european-cv-tootlip float-right">
+                    <div class="european-cv-tooltip-trigger"></div>
+                    <div class="european-cv-tootlip-content">
+                        {{ tooltip|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+            {{- form_widget(form, widget_attr) -}}
+    {% endif %}
+    {{- form_help(form) -}}
+    </{{ element|default('div') }}>
+{%- endblock form_row %}
+
+{%- block j_query_file_upload_widget -%}
+    {%- set type = type|default('hidden') -%}
+
+    <div data-trexima-european-cv-jquery-file-upload="image" data-trexima-european-cv-jquery-file-upload-url="{{ upload_url }}"
+         data-trexima-european-cv-jquery-file-upload-result="#{{ id }}"
+         data-trexima-european-cv-jquery-file-upload-base-url="{{ asset(base_upload_url) }}"
+         class="jquery-file-upload jquery-file-upload-image{% if filename %} jquery-file-upload-uploaded{% endif %}"
+         id="{{ id }}-jquery-file-upload">
+
+        {{ block('form_widget_simple') }}
+
+        <input type="file" accept="{{ constant('Trexima\\EuropeanCvBundle\\Controller\\UploadController::ALLOWED_IMAGE_MIME_TYPES')|join(',')|e('html_attr') }}" class="jquery-file-upload-input" />
+
+        <div class="jquery-file-upload-thumbnail img-thumbnail" data-trexima-european-cv-jquery-file-upload-default="Prosím, kliknite alebo preneste obrázok">
+            {% if filename %}
+                <img src="{{ asset(base_upload_url~filename) }}" alt="Uploaded photo" />
+            {% else %}
+                Prosím, kliknite alebo preneste obrázok
+            {% endif %}
+        </div>
+
+        <a href="#" class="jquery-file-upload-remove" data-trexima-european-cv-jquery-file-upload-remove="#{{ id }}-jquery-file-upload">
+            <i class="fas fa-minus-circle"></i>
+        </a>
+
+        <div class="progress">
+            <div class="jquery-file-upload-progress-bar progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">0% Complete</span>
+            </div>
+        </div>
+    </div>
+{%- endblock j_query_file_upload_widget %}
+
+{% block select2_widget -%}
+    {%- set attr = attr|merge({'data-trexima-european-cv-bind-select2': 1}) -%}
+    {% if placeholder is defined and not required %}
+        {%- set attr = attr|merge({'data-allow-clear': 1}) -%}
+        {%- set attr = attr|merge({'data-placeholder': placeholder}) -%}
+    {% endif %}
+
+    {{ block('choice_widget_collapsed') }}
+{%- endblock select2_widget %}
+
+{%- block choice_widget_options -%}
+    {% for group_label, choice in options %}
+        {%- if choice is iterable -%}
+            <optgroup label="{{ choice_translation_domain is same as(false) ? group_label : group_label|trans({}, choice_translation_domain) }}">
+                {% set options = choice %}
+                {{- block('choice_widget_options') -}}
+            </optgroup>
+        {%- else -%}
+            <option{% if choices_description is defined %} data-select2-description={{ attribute(choices_description, choice.value)|e('html_attr') }}{% endif %} value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
+        {%- endif -%}
+    {% endfor %}
+{%- endblock choice_widget_options -%}
+
+{% block atomic_date_range_row %}
+    {{ form_label(form.beginDay, 'Od') }}
+    <div class="row">
+        <div class="col-md">
+            {{ form_row(form.beginDay) }}
+        </div>
+        <div class="col-md">
+            {{ form_row(form.beginMonth) }}
+        </div>
+        <div class="col-md">
+            {% if tooltip is defined %}
+                <div class="european-cv-widget-tootip-container">
+                    <div class="european-cv-widget-container">
+                        {{ form_row(form.beginYear) }}
+                    </div>
+                    <div class="european-cv-tooltip-container">
+                        <div class="european-cv-tootlip float-right">
+                            <div class="european-cv-tooltip-trigger"></div>
+                            <div class="european-cv-tootlip-content">
+                                {{ tooltip|raw }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {{ form_row(form.beginYear) }}
+            {% endif %}
+        </div>
+    </div>
+
+    {{ form_label(form.endDay, 'Do') }}
+    <div class="row">
+        <div class="col-md">
+            {{ form_row(form.endDay) }}
+        </div>
+        <div class="col-md">
+            {{ form_row(form.endMonth) }}
+        </div>
+        <div class="col-md">
+            {{ form_row(form.endYear) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block driving_license_widget %}
+    <div data-trexima-european-cv-driving-license="{{ id }}_driving_license___name___drivingLicense">
+        <label>{{ 'Bežný vodičský preukaz'|trans }}</label>
+        {% for code, driving_license in driving_licenses if driving_license.category == 1 %}
+            <div class="form-group{% if not valid %} is-invalid{% endif %} european-cv-driving_license-form-group">
+                <i class="icon-driving-license icon-driving-license-{{ code }}" aria-hidden="true"></i>
+                <div class="european-cv-driving-license-row">
+                    {{ form_widget(attribute(form, 'driving_license_' ~ code)) }}
+                </div>
+            </div>
+        {% endfor %}
+        <br />
+
+        <label>{{ 'Nadštandardný vodičský preukaz'|trans }}</label>
+        {% for code, driving_license in driving_licenses if driving_license.category == 2 %}
+            <div class="form-group{% if not valid %} is-invalid{% endif %} european-cv-driving_license-form-group">
+                <i class="icon-driving-license icon-driving-license-{{ code }}" aria-hidden="true"></i>
+                <div class="european-cv-driving-license-row">
+                    {{ form_widget(attribute(form, 'driving_license_' ~ code)) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_phones_widget %}
+    <div {{ block('widget_container_attributes') -}}
+         data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_phones_entry_widget %}
+    {% set header %}
+        <span data-trexima-european-cv-live-update-default="#{{ form.type.vars.id }}"
+            {% if form.type.vars.data %} class="hidden"{% endif %}>
+            [Prosím vyplňte]
+        </span>
+        <strong>
+            <span data-trexima-european-cv-live-update="#{{ form.type.vars.id }}">
+                {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVPhone::TYPES')[form.type.vars.data]|default('') }}
+            </span>
+        </strong>
+        -
+        <span data-trexima-european-cv-live-update="#{{ form.number.vars.id }}">{{ form.number.vars.data|default('') }}</span>
+    {% endset %}
+
+    {% set content %}
+        {{ form_row(form.type) }}
+        {{ form_row(form.number) }}
+    {% endset %}
+    {{ block('base_collection_entry_widget', '@TreximaEuropeanCv/form/_base_collection.html.twig') }}
+{% endblock %}
+
+{% block _european_cv_practices_widget %}
+    <div {{ block('widget_container_attributes') -}}
+        data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+        data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_practices_entry_widget %}
+    {% set header %}
+        <span data-trexima-european-cv-live-update-default="#{{ form.job.vars.id }}"
+                {% if form.job.vars.data %} class="hidden"{% endif %}>
+            [Prosím vyplňte]
+        </span>
+        <strong>
+            <span data-trexima-european-cv-live-update="#{{ form.job.vars.id }}">
+                {{ form.job.vars.data|default('') }}
+            </span>
+        </strong>
+
+        {% spaceless %}
+            [<span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginYear.vars.id }}"{% if not form.dateRange.beginYear.vars.data %} class="hidden"{% endif %}>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginDay.vars.id }}">{{ form.dateRange.beginDay.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginDay.vars.id }}"{% if not form.dateRange.beginDay.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginMonth.vars.id }}">{{ form.dateRange.beginMonth.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginMonth.vars.id }}"{% if not form.dateRange.beginMonth.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginYear.vars.id }}">{{ form.dateRange.beginYear.vars.data }}</span>
+            </span>
+            -
+            <span data-trexima-european-cv-live-update-default="#{{ form.dateRange.endYear.vars.id }}"{% if form.dateRange.endYear.vars.data %} class="hidden"{% endif %}>Prebieha</span>
+            <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endYear.vars.id }}"{% if not form.dateRange.endYear.vars.data %} class="hidden"{% endif %}>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endDay.vars.id }}">{{ form.dateRange.endDay.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endDay.vars.id }}"{% if not form.dateRange.endDay.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endMonth.vars.id }}">{{ form.dateRange.endMonth.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endMonth.vars.id }}"{% if not form.dateRange.endMonth.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endYear.vars.id }}">{{ form.dateRange.endYear.vars.data }}</span>
+            </span>]
+        {% endspaceless %}
+    {% endset %}
+
+    {% set content %}
+        {% set tooltip %}
+            Uveďte časové obdobie,
+            počas ktorého ste pracovnú pozíciu/zamestnanie vykonávali (vyplnením kolóniek „Od“ a „Do“).
+            Pokiaľ na danej pozícii stále pracujete, resp. ste ešte neukončili praconý pomer,
+            kolónku „Do“ nechajte prázdnu.
+        {% endset %}
+        {{ form_row(form.dateRange, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte názov pracovnej pozície/zamestnania, ktoré ste
+            vykonávali.<br />
+            <strong>Príklad:</strong><br />
+            Kuchár
+        {% endset %}
+        {{ form_row(form.job, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte názov a adresu zamestnávateľa (ulicu,
+            číslo domu, mesto, resp. obec, PSČ a krajinu). Odporúčame uviesť aj kontaktné údaje zamestnávateľa (telefón, e-mail
+            alebo internetovú adresu).<br />
+            <strong>Príklad:</strong><br />
+            TREXIMA Bratislava, spol. s r.o.<br />
+            Drobného 29, 844 07 Bratislava, Slovenská republika<br />
+            +421 233322209, projekt@istp.sk, www.istp.sk
+        {% endset %}
+        {{ form_row(form.jobAddress, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte hlavné pracovné činnosti, ktoré ste na
+            uvedenej pracovnej pozícii vykonávali. Príklady nájdete v Kartotéke zamestnaní.<br />
+            <strong>Príklad:</strong><br />
+            Príprava a úprava produktov a pokrmov<br />
+            Zostavovanie jedálneho lístka a poradia pokrmov
+        {% endset %}
+        {{ form_row(form.mainActivities, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte charakter odvetvia hospodárstva
+            zamestnávateľa. Zoznam pracovných oblastí na inšpiráciu nájdete v Kartotéke zamestnaní.<br />
+            <strong>Príklad:</strong><br />
+            Stavebníctvo
+        {% endset %}
+        {{ form_row(form.industry, {'tooltip': tooltip}) }}
+    {% endset %}
+    {{ block('base_collection_entry_widget', '@TreximaEuropeanCv/form/_base_collection.html.twig') }}
+{% endblock %}
+
+{% block _european_cv_educations_widget %}
+    <div {{ block('widget_container_attributes') -}}
+         data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_educations_entry_widget %}
+    {% set header %}
+        <span data-trexima-european-cv-live-update-default="#{{ form.title.vars.id }}"
+                {% if form.title.vars.data %} class="hidden"{% endif %}>
+            [Prosím vyplňte]
+        </span>
+        <strong>
+            <span data-trexima-european-cv-live-update="#{{ form.title.vars.id }}">
+                {{ form.title.vars.data|default('') }}
+            </span>
+        </strong>
+
+        {% spaceless %}
+            [<span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginYear.vars.id }}"{% if not form.dateRange.beginYear.vars.data %} class="hidden"{% endif %}>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginDay.vars.id }}">{{ form.dateRange.beginDay.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginDay.vars.id }}"{% if not form.dateRange.beginDay.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginMonth.vars.id }}">{{ form.dateRange.beginMonth.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginMonth.vars.id }}"{% if not form.dateRange.beginMonth.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginYear.vars.id }}">{{ form.dateRange.beginYear.vars.data }}</span>
+            </span>
+            -
+            <span data-trexima-european-cv-live-update-default="#{{ form.dateRange.endYear.vars.id }}"{% if form.dateRange.endYear.vars.data %} class="hidden"{% endif %}>Prebieha</span>
+            <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endYear.vars.id }}"{% if not form.dateRange.endYear.vars.data %} class="hidden"{% endif %}>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endDay.vars.id }}">{{ form.dateRange.endDay.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endDay.vars.id }}"{% if not form.dateRange.endDay.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endMonth.vars.id }}">{{ form.dateRange.endMonth.vars.data }}</span>
+                <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endMonth.vars.id }}"{% if not form.dateRange.endMonth.vars.data %} class="hidden"{% endif %}>.</span>
+                <span data-trexima-european-cv-live-update="#{{ form.dateRange.endYear.vars.id }}">{{ form.dateRange.endYear.vars.data }}</span>
+            </span>]
+        {% endspaceless %}
+    {% endset %}
+
+    {% set content %}
+        {% set tooltip %}
+            Uveďte časové obdobie, počas ktorého ste sa
+            zúčastňovali vzdelávania a prípravy (vyplnením kolóniek „Od“ a „Do“). Pokiaľ ste stále vo vzdelávacom procese,
+            kolónku „Do“ nechajte prázdnu.
+        {% endset %}
+        {{ form_row(form.dateRange, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte presný názov získanej kvalifikácie.<br />
+            <strong>Príklad:</strong><br />
+            Úplné stredné odborné vzdelanie v odbore cestovný ruch
+        {% endset %}
+        {{ form_row(form.title, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte názov, typ a adresu navštevovanej
+            vzdelávacej inštitúcie (ulicu, číslo domu, mesto, resp. obec, PSČ a krajinu). Odporúčame uviesť aj kontaktné údaje
+            vzdelávacej inštitúcie (telefón, e-mail alebo internetovú adresu).<br />
+            <strong>Príklad:</strong><br />
+            Stredná odborná škola obchodu a služieb<br />
+            Nábrežie J. Kalinčiaka 1, 971 01 Prievidza, Slovenská republika<br />
+            +421 233322209, skola-vzor@skola-vzor.sk, www.skola-vzor.sk
+        {% endset %}
+        {{ form_row(form.organizationAddress, {'tooltip': tooltip}) }}
+        {{ form_row(form.educationLevel) }}
+        {% set tooltip %}
+            Uveďte úroveň Európskeho kvalifikačného
+            rámca (EKR) alebo Národného kvalifikačného rámca (NKR) na základe získanej kvalifikácie.<br />
+            <strong>Príklad:</strong><br />
+            Úroveň 4<br />
+            <strong>Prepojenie stupňov vzdelania s EKR a NKR:</strong><br />
+            Základné vzdelanie = úroveň 1<br />
+            Nižšie stredné odborné vzdelanie = úroveň 2<br />
+            Stredné odborné vzdelanie = úroveň 3<br />
+            Úplné stredné odborné alebo všeobecné vzdelanie = úroveň 4<br />
+            Vyššie odborné vzdelanie = úroveň 5<br />
+            Vysokoškolské vzdelanie prvého stupňa = úroveň 6<br />
+            Vysokoškolské vzdelanie druhého stupňa = úroveň 7<br />
+            Vysokoškolské vzdelanie tretieho stupňa = úroveň 8
+        {% endset %}
+        {{ form_row(form.europeanQualification, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Zosumarizujte hlavné predmety, ktoré ste v rámci
+            príslušného vzdelávania absolvovali alebo profesijné zručnosti, ktoré ste si počas vzdelávania osvojili. Zamerajte sa
+            na tie predmety a zručnosti, ktoré by mohli byť pre vás prínosom v zamestnaní, o ktoré sa uchádzate.<br />
+            <strong>Príklad:</strong><br />
+            Zemepis cestovného ruchu, ekonomika cestovného ruchu, obchodná stratégia, hotelierstvo, anglický jazyk, nemecký jazyk,
+            tovaroznalectvo
+        {% endset %}
+        {{ form_row(form.subject, {'tooltip': tooltip}) }}
+    {% endset %}
+    {{ block('base_collection_entry_widget', '@TreximaEuropeanCv/form/_base_collection.html.twig') }}
+{% endblock %}
+
+{% block _european_cv_languages_widget %}
+    <div {{ block('widget_container_attributes') -}}
+         data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_languages_entry_widget %}
+    {% set header %}
+        <span data-trexima-european-cv-live-update-default="#{{ form.language.vars.id }}"
+                {% if form.language.vars.data %} class="hidden"{% endif %}>
+            [Prosím vyplňte]
+        </span>
+        <strong>
+            <span data-trexima-european-cv-live-update="#{{ form.language.vars.id }}">
+                {{ form.language.vars.data|european_cv_listing('languageList') }}
+            </span>
+        </strong>
+    {% endset %}
+
+    {% set content %}
+        {% set tooltip %}
+            V nasledujúcich kolónkach uveďte svoje zručnosti
+            v cudzích jazykoch. Použite škálu sebahodnotenia, ktorú vyvinula Rada Európy na pomoc pri sebahodnotení úrovne
+            ovládania cudzích jazykov v porozumení, hovorení a písaní.
+        {% endset %}
+        {{ form_row(form.language, {'tooltip': tooltip}) }}
+        {{ form_row(form.listeningLevel) }}
+        {{ form_row(form.readingLevel) }}
+        {{ form_row(form.talkingLevel) }}
+        {{ form_row(form.oralSpeechLevel) }}
+        {{ form_row(form.writingLevel) }}
+        {% set tooltip %}
+            Uveďte relevantné jazykové
+            vysvedčenie/osvedčenie alebo diplom, ktorý ste získali. Uveďte tiež európsku úroveň ovládania jazyka, ak je spomenutá
+            v originálnom vysvedčení/osvedčení alebo diplome, napr.: B2.<br />
+            <strong>Príklad:</strong><br />
+            Diplôme d'études en langue française (DELF) B1
+        {% endset %}
+        {{ form_row(form.certificate, {'tooltip': tooltip}) }}
+    {% endset %}
+    {{ block('base_collection_entry_widget', '@TreximaEuropeanCv/form/_base_collection.html.twig') }}
+{% endblock %}
+
+{% block _european_cv_additionalInformations_widget %}
+    <div {{ block('widget_container_attributes') -}}
+         data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_additionalInformations_entry_widget %}
+    {% set header %}
+        <span data-trexima-european-cv-live-update-default="#{{ form.type.vars.id }}"
+                {% if form.type.vars.data %} class="hidden"{% endif %}>
+            [Prosím vyplňte]
+        </span>
+        <strong>
+            <span data-trexima-european-cv-live-update="#{{ form.type.vars.id }}">
+                {{ constant('Trexima\\EuropeanCvBundle\\Entity\\EuropeanCVAdditionalInformation::TYPES')[form.type.vars.data]|default('') }}
+            </span>
+        </strong>
+        -
+        <span data-trexima-european-cv-live-update="#{{ form.content.vars.id }}">{{ form.content.vars.data|default('') }}</span>
+    {% endset %}
+
+    {% set content %}
+        {{ form_row(form.type) }}
+        {{ form_row(form.content) }}
+    {% endset %}
+    {{ block('base_collection_entry_widget', '@TreximaEuropeanCv/form/_base_collection.html.twig') }}
+{% endblock %}
+
+{% block _european_cv_drivingLicenses_entry_widget %}
+    <div class="row">
+        <div class="col-sm">
+            {{ form_widget(form.drivingLicense, {'attr': {'data-trexima-european-cv-group-trigger': form.drivingLicense.vars.id ~ '-group'}}) }}
+        </div>
+        <div class="col-sm">
+            <div data-group="{{ form.drivingLicense.vars.id }}-group" data-group-show-on-value="1" data-group-hide-on-value="0"
+                 {% if not form.drivingLicense.vars.data %}class="hidden"{% endif %}>
+                {{ form_widget(form.distanceTraveled) }}
+            </div>
+        </div>
+        <div class="col-sm">
+            <div data-group="{{ form.drivingLicense.vars.id }}-group" data-group-show-on-value="1" data-group-hide-on-value="0"
+                 class="float-left{% if not form.drivingLicense.vars.data %} hidden{% endif %}">
+                {{ form_widget(form.activeDriver) }}
+            </div>
+
+            <div class="european-cv-tootlip float-right">
+                <div class="european-cv-tooltip-trigger"></div>
+                <div class="european-cv-tootlip-content">
+                    {{ help|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _european_cv_attachments_widget %}
+    <div {{ block('widget_container_attributes') -}}
+         data-trexima-european-cv-dynamic-collection-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-trexima-european-cv-dynamic-collection-counter="{{ form.vars.data|length }}"
+         data-trexima-european-cv-sortable="true">
+        {% for entry in form %}
+            {{ form_widget(entry) }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _european_cv_attachments_entry_widget %}
+    <div class="form-group drag-item" id="collection-entry-{{ id }}">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text drag-handle">
+                    <i class="fas fa-arrows-alt"></i>
+                </span>
+            </div>
+            {{ form_widget(form.position) }}
+            {% if form.file is defined %}
+                {{ form_widget(form.file) }}
+            {% else %}
+                {{ form_widget(form.name) }}
+            {% endif %}
+            <div class="input-group-append">
+                <a href="#" class="input-group-text" data-trexima-european-cv-dynamic-collection-remove="#collection-entry-{{ id }}">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            {% if form.file is defined %}
+                {{ form_errors(form.file) }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

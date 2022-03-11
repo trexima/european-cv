@@ -1,0 +1,62 @@
+h1 {
+    color: #f00;
+    margin: 0 0 15pt 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.page-break-avoid {
+    page-break-inside: avoid;
+}
+
+table {
+    border: 0;
+    width: 100%;
+    page-break-inside: avoid;
+    overflow: wrap;
+    border-collapse: collapse;
+}
+
+table > tr {
+    page-break-after: avoid;
+}
+
+table > tr > td   {
+    vertical-align: top;
+    page-break-inside: avoid;
+}
+
+table.vertical-middle td {
+    vertical-align: middle;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-auto {
+    overflow: auto; /* For mPDF very usefull in tables for preventing wraps inside word! */
+}

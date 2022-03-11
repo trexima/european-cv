@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="european-cv-photo-widget">
+            {% set tooltip %}
+                Svoju fotografiu vložte v odporúčanom formáte 1:1 (napr. 250x250 pixelov). Podporované formáty sú: jpg, png. Maximálna veľkosť fotografie je 2048 kB.
+            {% endset %}
+            {{ form_row(form.photo, {'tooltip': tooltip}) }}
+        </div>
+    </div>
+    <div class="col-md">
+        {% set tooltip %}
+            Uveďte svoj titul (v prípade, že ste ho dosiahli), meno a priezvisko.<br>
+            <strong>Príklad:</strong><br>
+            Ing. Ján Novák
+        {% endset %}
+        {{ form_row(form.name, {'tooltip': tooltip}) }}
+        {% set tooltip %}
+            Uveďte názov ulice, číslo domu, mesto (obec), PSČ a krajinu vašej kontaktnej adresy.<br />
+            <strong>Príklad:</strong><br />
+            Batkova 3, 841 01 Bratislava, Slovenská republika
+        {% endset %}
+        {{ form_row(form.address, {'tooltip': tooltip}) }}
+    </div>
+</div>
+
+{% set tooltip %}
+    Uveďte adresu osobnej webovej stránky, blogu, sociálnej siete a pod.<br />
+    <strong>Príklad:</strong><br />
+    www.facebook.com/jan.novak.10
+{% endset %}
+{{ form_row(form.personalWebsite, {'tooltip': tooltip}) }}
+{% set tooltip %}
+    Uveďte vašu štátnu príslušnosť.<br />
+    <strong>Príklad:</strong><br />
+    Slovensko
+{% endset %}
+{{ form_row(form.nationality, {'tooltip': tooltip}) }}
+{{ form_row(form.dateOfBirth) }}
+{{ form_row(form.sex) }}

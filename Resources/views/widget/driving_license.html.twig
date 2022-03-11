@@ -1,0 +1,15 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col-md">
+            {{ form_widget(form.drivingLicenseOwner[0], {'attr': {'data-trexima-european-cv-group-trigger': form.drivingLicenseOwner.vars.id ~ '-group'}}) }}
+        </div>
+        <div class="col-md">
+            {{ form_widget(form.drivingLicenseOwner[1], {'attr': {'data-trexima-european-cv-group-trigger': form.drivingLicenseOwner.vars.id ~ '-group'}}) }}
+        </div>
+    </div>
+</div>
+
+<div data-group="{{ form.drivingLicenseOwner.vars.id }}-group" data-group-show-on-value="1" data-group-hide-on-value="0"
+     {% if not form.drivingLicenseOwner.vars.data %}class="hidden"{% endif %}>
+    {{ form_row(form.drivingLicenses) }}
+</div>

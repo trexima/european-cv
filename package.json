@@ -1,0 +1,36 @@
+{
+  "name": "trexima-european-cv",
+  "version": "1.0.0",
+  "main": "Resources/public/trexima-european-cv.js",
+  "repository": "ssh://git@git.trexima.sk:7999/trex/europeancvbundle.git",
+  "author": "buzak <buzak@trexima.sk>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.26.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
+    "webpack-notifier": "1.6.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "blueimp-file-upload": "^9.28.0",
+    "bootstrap": "^4.3.1",
+    "bs-custom-file-input": "^1.3.2",
+    "flatpickr": "^4.6.9",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "jquery.dirtyforms": "^2.0.0",
+    "parsleyjs": "^2.8.1",
+    "popper.js": "^1.14.7",
+    "select2": "^4.0.6-rc.1",
+    "select2-bootstrap-theme": "^0.1.0-beta.10",
+    "sortablejs": "^1.8.4 < 1.10"
+  }
+}

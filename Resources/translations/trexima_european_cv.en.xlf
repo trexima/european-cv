@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="sk" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Európsky životopis</source>
+                <target>European CV</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Certifikácia</source>
+                <target>Certifications</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Citácie</source>
+                <target>Citations</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Členstvá</source>
+                <target>Memberships</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Konferencie</source>
+                <target>Conferences</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Kurzy</source>
+                <target>Courses</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Prezentácie</source>
+                <target>Presentations</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Projekty</source>
+                <target>Projects</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Publikácie</source>
+                <target>Publications</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Referencie</source>
+                <target>References</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Semináre</source>
+                <target>Seminars</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Vyznamenania a ocenenia</source>
+                <target>Honours and awards</target>
+            </trans-unit>
+            <trans-unit id="loco:$3">
+                <source>OSOBNÉ ÚDAJE</source>
+                <target>PERSONAL DETAILS</target>
+            </trans-unit>
+            <trans-unit id="loco:$4">
+                <source>Pohlavie</source>
+                <target>Sex</target>
+            </trans-unit>
+            <trans-unit id="loco:$5">
+                <source>Dátum narodenia</source>
+                <target>Date of birth</target>
+            </trans-unit>
+            <trans-unit id="loco:$6">
+                <source>Štátna príslušnosť</source>
+                <target>Nationality</target>
+            </trans-unit>
+            <trans-unit id="loco:$7">
+                <source>ZAMESTNANIE, O KTORÉ SA UCHÁDZATE</source>
+                <target>TYPE OF APPLICATION</target>
+            </trans-unit>
+            <trans-unit id="loco:$8">
+                <source>PRAX</source>
+                <target>WORK EXPERIENCE</target>
+            </trans-unit>
+            <trans-unit id="loco:$9">
+                <source>Prebieha</source>
+                <target>Ongoing</target>
+            </trans-unit>
+            <trans-unit id="loco:$10">
+                <source>Odvetvie</source>
+                <target>Business or sector</target>
+            </trans-unit>
+            <trans-unit id="loco:$11">
+                <source>VZDELÁVANIE A PRÍPRAVA</source>
+                <target>EDUCATION AND TRAINING</target>
+            </trans-unit>
+            <trans-unit id="loco:$13">
+                <source>OSOBNÉ ZRUČNOSTI</source>
+                <target>PERSONAL SKILLS</target>
+            </trans-unit>
+            <trans-unit id="loco:$14">
+                <source>Materinský jazyk</source>
+                <target>Mother tongue(s)</target>
+            </trans-unit>
+            <trans-unit id="loco:$15">
+                <source>Ďalšie jazyky</source>
+                <target>Other language(s)</target>
+            </trans-unit>
+            <trans-unit id="loco:$16">
+                <source>POROZUMENIE</source>
+                <target>UNDERSTANDING</target>
+            </trans-unit>
+            <trans-unit id="loco:$17">
+                <source>HOVORENIE</source>
+                <target>SPEAKING</target>
+            </trans-unit>
+            <trans-unit id="loco:$18">
+                <source>PÍSANIE</source>
+                <target>WRITING</target>
+            </trans-unit>
+            <trans-unit id="loco:$19">
+                <source>Počúvanie</source>
+                <target>Listening</target>
+            </trans-unit>
+            <trans-unit id="loco:$20">
+                <source>Čítanie</source>
+                <target>Reading</target>
+            </trans-unit>
+            <trans-unit id="loco:$21">
+                <source>Ústna interakcia</source>
+                <target>Spoken interaction</target>
+            </trans-unit>
+            <trans-unit id="loco:$22">
+                <source>Samostatný ústny prejav</source>
+                <target>Spoken production</target>
+            </trans-unit>
+            <trans-unit id="loco:$23">
+                <source>Úrovne</source>
+                <target>Levels</target>
+            </trans-unit>
+            <trans-unit id="spiBWGf" resname="A1 a A2: Používateľ základov jazyka">
+                <source>A1 a A2: Používateľ základov jazyka</source>
+                <target>A1 and A2: Basic user</target>
+            </trans-unit>
+            <trans-unit id="OMvNYIo" resname="B1 a B2: Samostatný používateľ">
+                <source>B1 a B2: Samostatný používateľ</source>
+                <target>B1 and B2: Independent user</target>
+            </trans-unit>
+            <trans-unit id="Y1c0dFC" resname="C1 a C2: Skúsený používateľ">
+                <source>C1 a C2: Skúsený používateľ</source>
+                <target>C1 and C2: Proficient user</target>
+            </trans-unit>
+            <trans-unit id="loco:$27">
+                <source>Komunikačné zručnosti</source>
+                <target>Communication skills</target>
+            </trans-unit>
+            <trans-unit id="loco:$28">
+                <source>Organizačné a riadiace zručnosti</source>
+                <target>Organisational/managerial skills</target>
+            </trans-unit>
+            <trans-unit id="loco:$29">
+                <source>Pracovné zručnosti</source>
+                <target>Job-related skills</target>
+            </trans-unit>
+            <trans-unit id="loco:$31">
+                <source>SEBAHODNOTENIE</source>
+                <target>SELF-ASSESSMENT</target>
+            </trans-unit>
+            <trans-unit id="loco:$32">
+                <source>Spracovanie informácií</source>
+                <target>Information processing</target>
+            </trans-unit>
+            <trans-unit id="loco:$33">
+                <source>Komunikácia</source>
+                <target>Communication</target>
+            </trans-unit>
+            <trans-unit id="loco:$34">
+                <source>Vytváranie obsahu</source>
+                <target>Content creation</target>
+            </trans-unit>
+            <trans-unit id="loco:$35">
+                <source>Bezpečnosť</source>
+                <target>Safety</target>
+            </trans-unit>
+            <trans-unit id="loco:$36">
+                <source>Riešenie problémov</source>
+                <target>Problem solving</target>
+            </trans-unit>
+            <trans-unit id="loco:$37">
+                <source>Ďalšie zručnosti</source>
+                <target>Other skills</target>
+            </trans-unit>
+            <trans-unit id="loco:$38">
+                <source>VODIČSKÝ PREUKAZ</source>
+                <target>DRIVING LICENCE</target>
+            </trans-unit>
+            <trans-unit id="loco:$39">
+                <source>Som aktívny vodič</source>
+                <target>I am an active driver</target>
+            </trans-unit>
+            <trans-unit id="loco:$40">
+                <source>DOPLŇUJÚCE INFORMÁCIE</source>
+                <target>ADDITIONAL INFORMATION</target>
+            </trans-unit>
+            <trans-unit id="loco:$41">
+                <source>PRÍLOHY</source>
+                <target>ATTACHMENT(s)</target>
+            </trans-unit>
+            <trans-unit id="loco:$43">
+                <source>Muž</source>
+                <target>Male</target>
+            </trans-unit>
+            <trans-unit id="loco:$44">
+                <source>Žena</source>
+                <target>Female</target>
+            </trans-unit>
+            <trans-unit id="loco:$45">
+                <source>EKR úroveň 1</source>
+                <target>EQF level 1</target>
+            </trans-unit>
+            <trans-unit id="loco:$46">
+                <source>EKR úroveň 2</source>
+                <target>EQF level 2</target>
+            </trans-unit>
+            <trans-unit id="loco:$47">
+                <source>EKR úroveň 3</source>
+                <target>EQF level 3</target>
+            </trans-unit>
+            <trans-unit id="loco:$48">
+                <source>EKR úroveň 4</source>
+                <target>EQF level 4</target>
+            </trans-unit>
+            <trans-unit id="loco:$49">
+                <source>EKR úroveň 5</source>
+                <target>EQF level 5</target>
+            </trans-unit>
+            <trans-unit id="loco:$50">
+                <source>EKR úroveň 6</source>
+                <target>EQF level 6</target>
+            </trans-unit>
+            <trans-unit id="loco:$51">
+                <source>EKR úroveň 7</source>
+                <target>EQF level 7</target>
+            </trans-unit>
+            <trans-unit id="loco:$52">
+                <source>EKR úroveň 8</source>
+                <target>EQF level 8</target>
+            </trans-unit>
+            <trans-unit id="loco:$53">
+                <source>slovenský</source>
+                <target>slovak</target>
+            </trans-unit>
+            <trans-unit id="loco:$54">
+                <source>český</source>
+                <target>czech</target>
+            </trans-unit>
+            <trans-unit id="loco:$55">
+                <source>anglický</source>
+                <target>english</target>
+            </trans-unit>
+            <trans-unit id="loco:$56">
+                <source>nemecký</source>
+                <target>german</target>
+            </trans-unit>
+            <trans-unit id="loco:$57">
+                <source>ruský</source>
+                <target>rusian</target>
+            </trans-unit>
+            <trans-unit id="loco:$58">
+                <source>ukrajinský</source>
+                <target>ukrainian</target>
+            </trans-unit>
+            <trans-unit id="loco:$59">
+                <source>poľský</source>
+                <target>polish</target>
+            </trans-unit>
+            <trans-unit id="loco:$60">
+                <source>maďarský</source>
+                <target>hungarian</target>
+            </trans-unit>
+            <trans-unit id="loco:$61">
+                <source>francúzsky</source>
+                <target>french</target>
+            </trans-unit>
+            <trans-unit id="loco:$62">
+                <source>taliansky</source>
+                <target>italian</target>
+            </trans-unit>
+            <trans-unit id="loco:$63">
+                <source>španielsky</source>
+                <target>spanish</target>
+            </trans-unit>
+            <trans-unit id="loco:$64">
+                <source>portugalský</source>
+                <target>portuguese</target>
+            </trans-unit>
+            <trans-unit id="loco:$65">
+                <source>holandský</source>
+                <target>dutch</target>
+            </trans-unit>
+            <trans-unit id="loco:$66">
+                <source>dánsky</source>
+                <target>danish</target>
+            </trans-unit>
+            <trans-unit id="loco:$67">
+                <source>fínsky</source>
+                <target>finnish</target>
+            </trans-unit>
+            <trans-unit id="loco:$68">
+                <source>švédsky</source>
+                <target>swedish</target>
+            </trans-unit>
+            <trans-unit id="loco:$69">
+                <source>nórsky</source>
+                <target>norwegian</target>
+            </trans-unit>
+            <trans-unit id="loco:$70">
+                <source>grécky</source>
+                <target>greek</target>
+            </trans-unit>
+            <trans-unit id="loco:$71">
+                <source>islandský</source>
+                <target>icelandic</target>
+            </trans-unit>
+            <trans-unit id="loco:$72">
+                <source>írsky</source>
+                <target>irish</target>
+            </trans-unit>
+            <trans-unit id="loco:$73">
+                <source>lotyšský</source>
+                <target>latvian</target>
+            </trans-unit>
+            <trans-unit id="loco:$74">
+                <source>estónsky</source>
+                <target>estonian</target>
+            </trans-unit>
+            <trans-unit id="loco:$75">
+                <source>litovský</source>
+                <target>lithuanian</target>
+            </trans-unit>
+            <trans-unit id="loco:$76">
+                <source>slovinský</source>
+                <target>slovenian</target>
+            </trans-unit>
+            <trans-unit id="loco:$77">
+                <source>maltský</source>
+                <target>maltese</target>
+            </trans-unit>
+            <trans-unit id="loco:$78">
+                <source>rumunský</source>
+                <target>romanian</target>
+            </trans-unit>
+            <trans-unit id="loco:$79">
+                <source>bulharský</source>
+                <target>bulgarian</target>
+            </trans-unit>
+            <trans-unit id="loco:$80">
+                <source>chorvátsky</source>
+                <target>croatian</target>
+            </trans-unit>
+            <trans-unit id="loco:$81">
+                <source>srbský</source>
+                <target>serbian</target>
+            </trans-unit>
+            <trans-unit id="loco:$82">
+                <source>latinský</source>
+                <target>latin</target>
+            </trans-unit>
+            <trans-unit id="loco:$83">
+                <source>čínsky (mandarínčina)</source>
+                <target>chinese (mandarin)</target>
+            </trans-unit>
+            <trans-unit id="loco:$84">
+                <source>vietnamský</source>
+                <target>vietnamese</target>
+            </trans-unit>
+            <trans-unit id="loco:$85">
+                <source>japonský</source>
+                <target>japanese</target>
+            </trans-unit>
+            <trans-unit id="loco:$86">
+                <source>kórejský</source>
+                <target>korean</target>
+            </trans-unit>
+            <trans-unit id="loco:$98">
+                <source>Nemám vodičský preukaz</source>
+                <target>I do not have a driving licence</target>
+            </trans-unit>
+            <trans-unit id="loco:$99">
+                <source>Mám vodičský preukaz</source>
+                <target>I have a driving licence</target>
+            </trans-unit>
+            <trans-unit id="loco:$100">
+                <source>Bežný vodičský preukaz</source>
+                <target>Standard driving licence</target>
+            </trans-unit>
+            <trans-unit id="loco:$101">
+                <source>Skupina AM</source>
+                <target>Category AM</target>
+            </trans-unit>
+            <trans-unit id="loco:$102">
+                <source>Skupina B</source>
+                <target>Category B</target>
+            </trans-unit>
+            <trans-unit id="loco:$103">
+                <source>Podskupina B1</source>
+                <target>Sub-category B1</target>
+            </trans-unit>
+            <trans-unit id="loco:$104">
+                <source>Nadštandardný vodičský preukaz</source>
+                <target>Above-standard driving licence</target>
+            </trans-unit>
+            <trans-unit id="loco:$105">
+                <source>Skupina A</source>
+                <target>Category AM</target>
+            </trans-unit>
+            <trans-unit id="loco:$106">
+                <source>Podskupina A1</source>
+                <target>Sub-category A1</target>
+            </trans-unit>
+            <trans-unit id="loco:$107">
+                <source>Podskupina A2</source>
+                <target>Sub-category A2</target>
+            </trans-unit>
+            <trans-unit id="loco:$108">
+                <source>Skupina C</source>
+                <target>Category C</target>
+            </trans-unit>
+            <trans-unit id="loco:$109">
+                <source>Podskupina C1</source>
+                <target>Sub-category C1</target>
+            </trans-unit>
+            <trans-unit id="loco:$110">
+                <source>Skupina D</source>
+                <target>Category D</target>
+            </trans-unit>
+            <trans-unit id="loco:$111">
+                <source>Podskupina D1</source>
+                <target>Sub-category D1</target>
+            </trans-unit>
+            <trans-unit id="loco:$112">
+                <source>Skupina B + E</source>
+                <target>Category B + E</target>
+            </trans-unit>
+            <trans-unit id="loco:$113">
+                <source>Skupina C + E</source>
+                <target>Category C + E</target>
+            </trans-unit>
+            <trans-unit id="loco:$114">
+                <source>Skupina D + E</source>
+                <target>Category D + E</target>
+            </trans-unit>
+            <trans-unit id="loco:$115">
+                <source>Podskupina C1 + E</source>
+                <target>Sub-category C1 + E</target>
+            </trans-unit>
+            <trans-unit id="loco:$116">
+                <source>Podskupina D1 + E</source>
+                <target>Sub-category D1 + E</target>
+            </trans-unit>
+            <trans-unit id="loco:$117">
+                <source>Skupina T</source>
+                <target>Category T</target>
+            </trans-unit>
+            <trans-unit id="loco:$118">
+                <source>Počet km</source>
+                <target>Number of km</target>
+            </trans-unit>
+            <trans-unit id="loco:$119">
+                <source>Používateľ so základnými zručnosťami</source>
+                <target>Basic user</target>
+            </trans-unit>
+            <trans-unit id="loco:$120">
+                <source>Samostatný používateľ</source>
+                <target>Independent user</target>
+            </trans-unit>
+            <trans-unit id="loco:$121">
+                <source>Nižšie stredné odborné vzdelanie</source>
+                <target>Lower secondary vocational education</target>
+            </trans-unit>
+            <trans-unit id="loco:$122">
+                <source>Stredné odborné vzdelanie</source>
+                <target>Secondary vocational education</target>
+            </trans-unit>
+            <trans-unit id="loco:$123">
+                <source>Úplné stredné odborné vzdelanie</source>
+                <target>Full secondary vocational education</target>
+            </trans-unit>
+            <trans-unit id="loco:$124">
+                <source>Úplné stredné všeobecné vzdelanie (gymnázium)</source>
+                <target>Full secondary general education (grammar school)</target>
+            </trans-unit>
+            <trans-unit id="loco:$125">
+                <source>Vyššie odborné vzdelanie</source>
+                <target>Higher professional education</target>
+            </trans-unit>
+            <trans-unit id="loco:$126">
+                <source>Vysokoškolské vzdelanie prvého stupňa</source>
+                <target>First degree university degree</target>
+            </trans-unit>
+            <trans-unit id="loco:$127">
+                <source>Vysokoškolské vzdelanie druhého stupňa</source>
+                <target>Second degree university degree</target>
+            </trans-unit>
+            <trans-unit id="loco:$128">
+                <source>Vysokoškolské vzdelanie tretieho stupňa</source>
+                <target>Third degree university degree</target>
+            </trans-unit>
+            <trans-unit id="loco:$129">
+                <source>Základné vzdelanie</source>
+                <target>Basic education</target>
+            </trans-unit>
+            <trans-unit id="loco:$130">
+                <source>Digitálne zručnosti</source>
+                <target>Digital skills</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

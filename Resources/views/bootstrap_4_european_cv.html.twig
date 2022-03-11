@@ -1,0 +1,318 @@
+{% trans_default_domain 'trexima_european_cv' %}
+{% form_theme form '@TreximaEuropeanCv/form/_bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form, {'attr': {'class': 'trexima-european-cv', 'data-trexima-european-cv-are-you-sure': true, 'data-trexima-european-cv-parsley-validate': true}}) }}
+    {{ form_errors(form) }}
+
+    <h3>
+        {% set chapter = 1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Osobné údaje'|trans }}
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/main.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Kontakt'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                Uveďte svoju e-mailovú adresu, prípadne telefónne číslo, na ktorom si želáte byť kontaktovaný. Môže to byť číslo vášho mobilného telefónu, k vám domov či do práce alebo aj viaceré z týchto možností. Odporúčame uviesť číslo v jeho medzinárodnej podobe. Pred medzinárodnú predvoľbu pridajte znak „+“ (bez medzery), ktorým sa zdôrazňuje potreba pridať predvoľbu pri medzinárodných hovoroch. Za medzinárodnou predvoľbou nasleduje medzera a celé číslo vrátane regionálnej predvoľby (bez nuly na začiatku) v jednom ucelenom bloku.<br>
+                <strong>Príklad:</strong><br>
+                jan.novak@trexima.sk<br>
+                +421 908000000<br>
+                +421 212345678
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/contact.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    {% if form.jobInterest is defined %}
+        <h3>
+            {% set chapter = chapter+1 %}
+            <span class="european-cv-form-section-number">{{ chapter }}</span>
+            {{ 'Zamestnanie, o ktoré sa uchádzate'|trans }}
+
+            <div class="european-cv-tootlip float-right">
+                <div class="european-cv-tooltip-trigger"></div>
+                <div class="european-cv-tootlip-content">
+                    Táto položka poskytuje prehľad o vašich preferenciách týkajúcich sa zamestnania,
+                    resp. pracovných činností. Spresnite zamestnanie alebo pracovnú oblasť, o ktorú sa zaujímate.<br>
+                    <strong>Príklad:</strong><br>
+                    Programátor
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </h3>
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md-8">
+                {% include '@TreximaEuropeanCv/widget/job_interest.html.twig' %}
+            </div>
+            <div class="col-md"></div>
+        </div>
+        <br />
+    {% endif %}
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Prax'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                V tejto časti vyplňte jednotlivé položky týkajúce sa vašich pracovných skúseností,
+                resp. predchádzajúcich zamestnaní. Ak chcete, aby ich systém automaticky zoradil podľa aktuálnosti
+                (chronologicky), využite pripravené šípky. V opačnom prípade môžete ľubovoľne zoradiť vyplnené položky
+                ich potiahnutím a presunutím na požadované miesto. Ak sa uchádzate o svoje prvé pracovné miesto,
+                nezabudnite uviesť pracovné činnosti, ktoré ste vykonávali popri vzdelávaní a príprave (brigády a pod.),
+                čo je dôkazom vášho prvého kontaktu so svetom práce. Kvôli stručnosti sa sústreďte na prax, ktorá pridá
+                na váhe vašej žiadosti alebo s ňou súvisí. Neprehliadnite prax, ktorá môže byť prínosom,
+                aj keď sa nevzťahuje priamo k profilu práce, o ktorú sa uchádzate (napr. čas strávený v zahraničí,
+                práca, ktorá vás priviedla do kontaktu s verejnosťou a pod.).
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/practice.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Vzdelávanie a príprava'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                V tejto časti vyplňte jednotlivé položky týkajúce sa vášho vzdelania. Ak chcete, aby ich systém
+                automaticky zoradil podľa aktuálnosti (chronologicky), využite pripravené šípky. V opačnom prípade
+                môžete ľubovoľne zoradiť vyplnené položky ich potiahnutím a presunutím na požadované miesto.
+                Nie je potrebné prezentovať všetky vaše kvalifikácie či školy, ktoré ste navštevovali.
+                Ak máte vysokoškolský diplom, nemusíte uvádzať základnú školu. Zamerajte sa na kvalifikácie,
+                ktoré by mohli byť pre vás prínosom v rámci zamestnania, o ktoré sa uchádzate.
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/education.html.twig' %}
+            {% if form.outputLanguage is defined %}
+                <hr />
+                {{ form_row(form.invertPositionPracticeEducation) }}
+            {% endif %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Jazykové zručnosti'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                V tejto časti vyplňte jednotlivé položky týkajúce sa vašich jazykových zručností.
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/language.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Digitálne zručnosti'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                V nasledujúcich kolónkach uveďte vaše digitálne/počítačové/IKT zručnosti.
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/digital_skill.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Osobné zručnosti'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                Táto časť je venovaná zručnostiam získaným v priebehu života a kariéry, ktoré však nemusia byť
+                nevyhnutne pokryté formálnymi vysvedčeniami a diplomami. Táto časť má za cieľ prezentovať úplný obraz
+                vašich spôsobilostí. Kolónky, ktoré sú nižšie uvedené, umožňujú opísať zručnosti a kompetencie získané
+                počas vzdelávania a prípravy (v priebehu vášho štúdia) alebo neformálnym spôsobom (počas pracovnej
+                činnosti alebo voľnočasových aktivít).
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/personal_skill.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Vodičský preukaz'|trans }}
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/driving_license.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Doplňujúce informácie'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                Uveďte akékoľvek dodatočné údaje, ktoré majú význam, resp. pridanú hodnotu pre vašu žiadosť.<br>
+                <strong>Príklady:</strong><br>
+                <br>
+                <strong>Publikácie</strong><br>
+                Ako napísať úspešný životopis. Vydavateľstvo Nová doba, Bratislava, 2002<br>
+                <strong>Projekty</strong><br>
+                Nová verejná knižnica mesta Žilina. Hlavný architekt zodpovedný za návrh stavby a dohľad nad jej
+                rozpočtom a realizáciou (2008-2012)<br>
+                <strong>Členstvá</strong><br>
+                Člen Univerzitného klubu filmárov
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/additional_information.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    <h3>
+        {% set chapter = chapter+1 %}
+        <span class="european-cv-form-section-number">{{ chapter }}</span>
+        {{ 'Prílohy'|trans }}
+
+        <div class="european-cv-tootlip float-right">
+            <div class="european-cv-tooltip-trigger"></div>
+            <div class="european-cv-tootlip-content">
+                Uveďte zoznam príloh životopisu, napr. kópie diplomov a vysvedčení, vrátane všetkých osvedčení vydaných
+                na konci školení, ktoré neviedli k získaniu formálnej kvalifikácie, doklady potvrdzujúce zamestnanie,
+                publikácie alebo výskum a pod. Uveďte zoznam v logickom slede (napr. uveďte diplomy alebo doklady
+                o zamestnaní spolu, očíslujte jednotlivé položky, ak sa to požaduje).
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </h3>
+    <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            {% include '@TreximaEuropeanCv/widget/attachment.html.twig' %}
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <br />
+
+    {% if form.outputLanguage is defined %}
+        <h3>
+            {% set chapter = chapter+1 %}
+            <span class="european-cv-form-section-number">{{ chapter }}</span>
+            {{ 'Výstup'|trans }}
+
+            <div class="european-cv-tootlip float-right">
+                <div class="european-cv-tooltip-trigger"></div>
+                <div class="european-cv-tootlip-content">
+                    Uveďťe, v akej jazykovej mutácii si chcete uložiť/vytlačiť/odoslať e-mailom formulár životopisu
+                    (v slovenčine, angličtine alebo nemčine). Predklad do cudzieho jazyka sa týka len šablóny životopisu,
+                    nie obsahu jednotlivých položiek, ktoré ste vyplnili ručne. Je potrebné vyplniť ich z vašej strany
+                    v príslušnom jazyku.
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </h3>
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md-8">
+                {% include '@TreximaEuropeanCv/widget/output.html.twig' %}
+            </div>
+            <div class="col-md"></div>
+        </div>
+    {% endif %}
+
+    {% include '@TreximaEuropeanCv/widget/buttons.html.twig' %}
+
+    <div class="modal fade" id="european-cv-email-dialog" tabindex="-1" role="dialog" aria-labelledby="european-cv-email-dialog-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="european-cv-email-dialog-label">Poslať životopis e-mailom</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% include '@TreximaEuropeanCv/widget/email_dialog.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

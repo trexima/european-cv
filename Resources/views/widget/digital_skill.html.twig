@@ -1,0 +1,20 @@
+{{ form_row(form.skillDigitalInformationProcessing) }}
+{{ form_row(form.skillDigitalCommunication) }}
+{{ form_row(form.skillDigitalContentCreation) }}
+{{ form_row(form.skillDigitalSecurity) }}
+{{ form_row(form.skillDigitalTroubleshooting) }}
+{% set tooltip %}
+    Uveďte relevantné počítačové/IKT osvedčenie alebo certifikát, ktorý ste získali.<br />
+    <strong>Príklad:</strong><br />
+    Certifikát ECDL Standard (Európsky vodičský preukaz na počítače, úroveň: digitálna kvalifikovanosť)
+{% endset %}
+{{ form_row(form.skillDigitalCertificate, {'tooltip': tooltip}) }}
+{% set tooltip %}
+    Uveďte vaše ďalšie digitálne/počítačové/IKT zručnosti, ktoré nie sú uvedené v predchádzajúcich
+    kolónkach a na ktoré by ste chceli upozorniť vášho potenciálneho zamestnávateľa. Uveďte,
+    kde ste ich nadobudli (v predchádzajúcom zamestnaní, počas štúdia, školení, seminárov,
+    dobrovoľníckej alebo záujmovej činnosti a pod.).<br />
+    <strong>Príklad:</strong><br />
+    ovládanie softvéru na úpravu fotografií (skúsenosť som nadobudol ako amatérsky fotograf)
+{% endset %}
+{{ form_row(form.skillDigitalOther, {'tooltip': tooltip}) }}

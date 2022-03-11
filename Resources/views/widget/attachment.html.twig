@@ -1,0 +1,17 @@
+{% if form.attachmentList is defined %}
+    {{ form_row(form.attachmentList) }}
+{% endif %}
+
+{% if form.attachments is defined %}
+    {{ form_row(form.attachments) }}
+    <div class="row">
+        <div class="col-md offset-md-8">
+            <div class="form-group">
+                <button class="btn btn-block btn-primary" type="button" data-trexima-european-cv-dynamic-collection-add="#{{ form.attachments.vars.id }}">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Pridať prílohu
+                </button>
+            </div>
+        </div>
+    </div>
+{% endif %}
