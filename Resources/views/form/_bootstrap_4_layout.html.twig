@@ -245,7 +245,7 @@
             </span>
         </strong>
 
-        {% spaceless %}
+        {% apply spaceless %}
             [<span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginYear.vars.id }}"{% if not form.dateRange.beginYear.vars.data %} class="hidden"{% endif %}>
                 <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginDay.vars.id }}">{{ form.dateRange.beginDay.vars.data }}</span>
                 <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginDay.vars.id }}"{% if not form.dateRange.beginDay.vars.data %} class="hidden"{% endif %}>.</span>
@@ -262,7 +262,7 @@
                 <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endMonth.vars.id }}"{% if not form.dateRange.endMonth.vars.data %} class="hidden"{% endif %}>.</span>
                 <span data-trexima-european-cv-live-update="#{{ form.dateRange.endYear.vars.id }}">{{ form.dateRange.endYear.vars.data }}</span>
             </span>]
-        {% endspaceless %}
+        {% endapply %}
     {% endset %}
 
     {% set content %}
@@ -331,7 +331,7 @@
             </span>
         </strong>
 
-        {% spaceless %}
+        {% apply spaceless %}
             [<span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginYear.vars.id }}"{% if not form.dateRange.beginYear.vars.data %} class="hidden"{% endif %}>
                 <span data-trexima-european-cv-live-update="#{{ form.dateRange.beginDay.vars.id }}">{{ form.dateRange.beginDay.vars.data }}</span>
                 <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.beginDay.vars.id }}"{% if not form.dateRange.beginDay.vars.data %} class="hidden"{% endif %}>.</span>
@@ -348,7 +348,7 @@
                 <span data-trexima-european-cv-live-update-filled="#{{ form.dateRange.endMonth.vars.id }}"{% if not form.dateRange.endMonth.vars.data %} class="hidden"{% endif %}>.</span>
                 <span data-trexima-european-cv-live-update="#{{ form.dateRange.endYear.vars.id }}">{{ form.dateRange.endYear.vars.data }}</span>
             </span>]
-        {% endspaceless %}
+        {% endapply %}
     {% endset %}
 
     {% set content %}
