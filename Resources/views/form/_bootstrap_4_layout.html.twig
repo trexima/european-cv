@@ -169,7 +169,7 @@
 {% block driving_license_widget %}
     <div data-trexima-european-cv-driving-license="{{ id }}_driving_license___name___drivingLicense">
         <label>{{ 'Bežný vodičský preukaz'|trans }}</label>
-        {% for code, driving_license in driving_licenses if driving_license.category == 1 %}
+        {% for code, driving_license in driving_licenses|filter(driving_license => driving_license.category == 1) %}
             <div class="form-group{% if not valid %} is-invalid{% endif %} european-cv-driving_license-form-group">
                 <i class="icon-driving-license icon-driving-license-{{ code }}" aria-hidden="true"></i>
                 <div class="european-cv-driving-license-row">
@@ -180,7 +180,7 @@
         <br />
 
         <label>{{ 'Nadštandardný vodičský preukaz'|trans }}</label>
-        {% for code, driving_license in driving_licenses if driving_license.category == 2 %}
+        {% for code, driving_license in driving_licenses|filter(driving_license => driving_license.category == 2) %}
             <div class="form-group{% if not valid %} is-invalid{% endif %} european-cv-driving_license-form-group">
                 <i class="icon-driving-license icon-driving-license-{{ code }}" aria-hidden="true"></i>
                 <div class="european-cv-driving-license-row">
