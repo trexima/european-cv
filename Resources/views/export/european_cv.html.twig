@@ -247,7 +247,7 @@
                             </td>
                             <td>
                                 <p>
-                                    {% for phone in european_cv.phones if phone.number %}
+                                    {% for phone in european_cv.phones|filter(phone => phone.number) %}
                                         {% if first_rendered is defined %}
                                             &nbsp;&nbsp;&nbsp;
                                             {% if phone.type %}
