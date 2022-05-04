@@ -2,7 +2,7 @@
 
 namespace Trexima\EuropeanCvBundle\Twig;
 
-use Pelago\Emogrifier;
+use Pelago\Emogrifier\CssInliner;
 use Symfony\Component\HttpKernel\Config\FileLocator;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -25,10 +25,6 @@ class EmogrifierRuntime implements RuntimeExtensionInterface
             $cssContent .= file_get_contents($this->fileLocator->locate($cssFilePath));
         }
 
-        $emogrifier = new Emogrifier();
-        $emogrifier->setHtml($content);
-        $emogrifier->setCss(strip_tags($cssContent).PHP_EOL.strip_tags($extraCssContent));
-
-        return @$emogrifier->emogrify();
+        return CssInliner::fromHtml($content)->inlineCss(strip_tags($cssContent).PHP_EOL.strip_tags($extraCssContent))->render();
     }
 }
